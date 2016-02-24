@@ -21,10 +21,10 @@ app.use(bodyParser.urlencoded({
 app.use(express.static(process.cwd() + '/public'));
 //Initializing and requiring middleware express-session, enabaling cookies
 app.use(require('express-session')({
-      secret:'HELLO WORLD',
-      resave: true,
-      saveUninitialized: true,
-      cookie: {secure: false, maxAge : (1000 * 60 * 60 * 2)},
+  secret:'HELLO WORLD',
+  resave: true,
+  saveUninitialized: true,
+  cookie: {secure: false, maxAge : (1000 * 60 * 60 * 2)},
 }));
 //Setting up and requring Handlebars
 var exphb = require('express-handlebars');
@@ -37,7 +37,7 @@ app.use(passport.session());
 /************* EXPRESS HANDLEBARS CODE START HERE *************/
 
 app.get('/', function(req, res) {
-    res.render('index', {msg: req.query.msg});
+  res.render('index', {msg: req.query.msg});
 });
 
 
@@ -80,6 +80,6 @@ if (app.get('env') === 'development') {
 // database connection via sequelize
 connection.sync().then(function() {
   app.listen(PORT, function() {
-      console.log("Listening on!!:" + PORT)
+    console.log("Listening on!!:" + PORT)
   });
 });
