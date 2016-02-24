@@ -17,6 +17,8 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({
     extended: false
 }));
+//get css,js, or images from files in public folder
+app.use(express.static(process.cwd() + '/public'));
 //Initializing and requiring middleware express-session, enabaling cookies
 app.use(require('express-session')({
       secret:'HELLO WORLD',
