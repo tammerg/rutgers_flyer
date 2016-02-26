@@ -44,9 +44,9 @@ app.get("/listings", function(req, res){
   res.render("restList");
 });
 
-
-
-
+app.get('/restinfo', function(req, res){
+  res.render('restinfo');
+});
 
 
 
