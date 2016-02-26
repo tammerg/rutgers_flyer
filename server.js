@@ -53,8 +53,6 @@ app.get('/restinfo', function(req, res){
 
 
 
-
-
 /************* EXPRESS HANDLEBARS CODE ENDS HERE *************/
 
 
