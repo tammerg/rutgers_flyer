@@ -48,6 +48,12 @@ app.get('/restinfo', function(req, res){
   res.render('restinfo');
 });
 
+app.post('/addRes', function(req, res){
+  alert("added");
+  console.log("added");
+  res.redirect('restList');
+});
+
 
 
 
