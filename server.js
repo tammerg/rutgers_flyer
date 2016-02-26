@@ -41,7 +41,7 @@ app.get('/', function(req, res) {
 });
 
 app.get("/listings", function(req, res){
-  res.render("restList");
+  res.render('restList');
 });
 
 app.get('/restinfo', function(req, res){
