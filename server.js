@@ -6,7 +6,7 @@ var app = express();
 var PORT = process.env.PORT || 3000;
 //Sequelize database setup
 var Sequelize = require('sequelize');
-var connection = new Sequelize('', '', '');
+var connection = new Sequelize('testdb1', 'root', 'password');
 //requiring passport last
 var passport = require('passport');
 var passportLocal = require('passport-local');
@@ -34,7 +34,7 @@ app.set('view engine', 'handlebars');
 app.use(passport.initialize());
 app.use(passport.session());
 
-/************* EXPRESS HANDLEBARS CODE START HERE *************/
+//************* EXPRESS HANDLEBARS CODE START HERE *************/
 
 app.get('/', function(req, res) {
   res.render('index', {msg: req.query.msg});
@@ -47,8 +47,6 @@ app.get("/listings", function(req, res){
 app.get('/restinfo', function(req, res){
   res.render('restinfo');
 });
-
-
 
 
 
