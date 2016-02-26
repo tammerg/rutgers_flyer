@@ -1,9 +1,9 @@
-//Boiler Playe Code - Initializing and Requiring all Modules
+//Boiler Plate Code - Initializing and Requiring all Modules
 //express setup
 var express = require('express');
 var app = express();
 //Checks the environment port if not use 3000.
-var PORT = process.env.NODE_ENV || 3000;
+var PORT = process.env.PORT || 3000;
 //Sequelize database setup
 var Sequelize = require('sequelize');
 var connection = new Sequelize('', '', '');
@@ -15,7 +15,7 @@ var bcrypt = require("bcryptjs");
 //requiring bodyParser an initializing for use
 var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({
-    extended: false
+  extended: false
 }));
 //get css,js, or images from files in public folder
 app.use(express.static(process.cwd() + '/public'));
@@ -39,10 +39,9 @@ app.use(passport.session());
 app.get('/', function(req, res) {
   res.render('index', {msg: req.query.msg});
 });
-
-
-
-
+app.get('/restinfo', function(req, res){
+  res.render('restinfo');
+});
 
 
 
