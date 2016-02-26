@@ -40,6 +40,10 @@ app.get('/', function(req, res) {
   res.render('index', {msg: req.query.msg});
 });
 
+app.get("/listings", function(req, res){
+  res.render("restList");
+});
+
 
 
 
