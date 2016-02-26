@@ -13,12 +13,35 @@
     <br>
     <div class="row center">
       <p>Have a favorite restaurant not listed here? Add it to our database!</p>
+      <!-- modal trigger -->
       <a class="modal-trigger waves-effect waves-light btn" href="#addRestModal">Add Restaurant</a>
     </div><br>
     <br>
   </div>
 </div>
 
+<!-- <div class="modal modal-fixed-footer" id="addRestModal">
+  <div class="modal-content">
+    <h4>Add Restaurant</h4>
+    <p></p>
+    <div class="row">
+      <form method="POST" action="/addRes" class="col s12">
+        <div class="row">
+          <div class="input-field col s6">
+            <i class="material-icons prefix">business</i> <input class="validate" id="restName" name="restName" type="text"> <label for="restName">Restaurant Name</label>
+          </div>
+        </div>
+        <button>Submit</button>
+      </form>
+    </div>
+    <p></p>
+  </div>
+  <div class="modal-footer">
+
+    <a class="modal-action modal-close waves-effect waves-green btn-flat" href="#!">Close</a>
+  </div>
+</div> -->
+<!-- Restaurant Add Modal -->
 <div class="modal modal-fixed-footer" id="addRestModal">
   <div class="modal-content">
     <h4>Add Restaurant</h4>
@@ -40,17 +63,18 @@
         </div>
         <div class="row">
           <div class="input-field col s12">
-            <i class="material-icons prefix">call</i> <input class="validate" id="phone" name="phone" type="number" min="7" max="14"> <label for="phone">Phone Number</label>
-          </div><button class="modal-action modal-close waves-effect waves-green btn-flat" type="submit">Submit</button>
+            <i class="material-icons prefix">call</i> <input class="validate" id="phone" name="phone" type="text"> <label for="phone">Phone Number</label>
+          </div>
         </div>
-
+        <button class="modal-action modal-close waves-effect waves-green">Submit</button>
       </form>
     </div>
     <p></p>
   </div>
-  <!-- <div class="modal-footer">
-     <a class="modal-action modal-close waves-effect waves-green btn-flat" href="#!">Close</a>
-  </div> -->
+  <div class="modal-footer">
+
+    <a class="modal-action modal-close waves-effect waves-green btn-flat" href="#!">Close</a>
+  </div>
 </div>
 
 <div class="section no-pad-bot" id="index-banner">

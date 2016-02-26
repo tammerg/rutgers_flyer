@@ -49,9 +49,8 @@ app.get('/restinfo', function(req, res){
 });
 
 app.post('/addRes', function(req, res){
-  alert("added");
   console.log("added");
-  res.redirect('restList');
+  res.redirect('/listings');
 });
 
 
