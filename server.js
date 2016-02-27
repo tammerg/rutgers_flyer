@@ -102,6 +102,47 @@ var User = connection.define('user', {
   }
 });
 
+var Restaurant = connection.define('restaurant', {
+  restName: {
+    type:Sequelize.STRING,
+    allowNull: false,
+    unique: true
+  },
+  cuisine: {
+    type:Sequelize.STRING,
+    allowNull: false,
+    validate: {
+      len: {
+          args: [4, 12],
+          msg: ", or password must be between 4-12 characters"
+      }
+    }
+  },
+  address: {
+    allowNull: false,
+    type:Sequelize.STRING,
+    validate: {
+      len: {
+          args: [4, 12],
+          msg: ", or password must be between 4-12 characters"
+      }
+    }
+  },
+  phone:{
+    allowNull: false,
+    type:Sequelize.STRING,
+    validate: {
+      len: {
+          args: [4, 12],
+          msg: ", or password must be between 4-12 characters"
+      }
+    }
+  }
+});
+
+// User.hasMany(Review)
+// Restaurant.hasMany(Review)
+
 //Account creation via sequelize
 app.post('/create', function(req, res){
     User.create(req.body).then(function(result){
@@ -118,6 +159,15 @@ app.post('/', passport.authenticate('local', {
     failureRedirect: '/?msg=Invalid Credentials'
 }));
 
+app.post('/addRes', function(req, res){
+  Restaurant.create(req.body).then(function(result){
+    res.redirect('/listings');
+  }).catch(function(err) {
+    console.log(err);
+    res.redirect('/?msg='+ "E-mail " + err.errors[0].message);
+  });
+});
+
 /************* SEQUELIZE CODE END *************/
 
 
@@ -129,10 +179,13 @@ app.get('/', function(req, res) {
 });
 
 app.get("/listings", function(req, res){
-  res.render('restList',{
-    user:req.user,
-    isAuthenticated: req.isAuthenticated()
+  Restaurant.findAll({}).then(function(restaurant){
+    res.render("restList", {restaurant});
   });
+  // res.render('restList',{
+  //   user:req.user,
+  //   isAuthenticated: req.isAuthenticated()
+  // });
 });
 
 app.get("/test", function(req, res){
@@ -149,10 +202,7 @@ app.get('/restinfo', function(req, res){
   });
 });
 
-app.post('/addRes', function(req, res){
-  console.log("added");
-  res.redirect('/listings');
-});
+
 
 
 
