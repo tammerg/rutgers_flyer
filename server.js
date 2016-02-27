@@ -18,7 +18,9 @@ app.use(bodyParser.urlencoded({
   extended: false
 }));
 //get css,js, or images from files in public folder
-app.use(express.static(process.cwd() + '/public'));
+app.use('/scripts', express.static('public/js'));
+app.use('/css', express.static('public/style'));
+app.use('/img', express.static('public/img'));
 //Initializing and requiring middleware express-session, enabaling cookies
 app.use(require('express-session')({
   secret:'HELLO WORLD',
@@ -64,7 +66,7 @@ passport.serializeUser(function(user, done) {
   done(null, user.id);
 });
 passport.deserializeUser(function(id, done){
-  done(null, {id: id, username: id})
+  done(null, {id: id, username: id});
 });
 /************* PASSPORT CODE END*************/
 
@@ -178,6 +180,6 @@ if (app.get('env') === 'development') {
 // database connection via sequelize
 connection.sync().then(function() {
   app.listen(PORT, function() {
-    console.log("Listening on!!:" + PORT)
+    console.log("Listening on!!:" + PORT);
   });
 });
