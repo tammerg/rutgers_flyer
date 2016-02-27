@@ -2,8 +2,8 @@
 //express setup
 var express = require('express');
 var app = express();
+//require (dotenv)
 require('dotenv').config();
-
 //Checks the environment port if not use 3000.
 var PORT = process.env.PORT || 3000;
 //Sequelize database setup
