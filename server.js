@@ -6,7 +6,7 @@ var app = express();
 var PORT = process.env.PORT || 3000;
 //Sequelize database setup
 var Sequelize = require('sequelize');
-var connection = new Sequelize('testdb1', 'root', '');
+var connection = new Sequelize('testdb1', 'root', 'password');
 //requiring passport last
 var passport = require('passport');
 var passportLocal = require('passport-local');
