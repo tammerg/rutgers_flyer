@@ -2,11 +2,13 @@
 //express setup
 var express = require('express');
 var app = express();
+require('dotenv').config();
+
 //Checks the environment port if not use 3000.
 var PORT = process.env.PORT || 3000;
 //Sequelize database setup
 var Sequelize = require('sequelize');
-var connection = new Sequelize('testdb1', 'root', 'password');
+var connection = new Sequelize('process.env.JAWSDB_URL');
 //requiring passport last
 var passport = require('passport');
 var passportLocal = require('passport-local');
