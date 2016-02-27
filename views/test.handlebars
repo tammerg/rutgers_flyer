@@ -1,0 +1,20 @@
+{{!-- This code only lets the user see the page if they are logged in need to figure out if it should go in the main handlebars--}}
+<div>
+  {{#if isAuthenticated}}
+  <div class="row">
+<div class="teal" style="position:fixed;right:0px; bottom:0px"> <i class="material-icons">recent_actors</i>{{ user.username }}</div>
+  </div>
+    <div class="row">
+      <div class="row col s6">
+      <a href="">    <img class="materialboxed" width="650" src="http://www.taza.co/wp-content/uploads/2015/07/food_porn_dessert_edition_4.jpg"></a>
+      </div>
+       <div class="row col s6">
+      <a href="">    <img class="materialboxed" width="650" src="http://s9.favim.com/orig/140123/chocolate-chocolate-cake-food-food-porn-Favim.com-1293417.jpg"></a>
+      </div>
+    </div>
+
+    {{else}}
+    <h1 class="center"style="color:yellow">SORRY YOU ARE NOT LOGGED IN</h1>
+      {{/if}}
+</div>
+
