@@ -113,8 +113,8 @@ var Restaurant = connection.define('restaurant', {
     allowNull: false,
     validate: {
       len: {
-          args: [4, 12],
-          msg: ", or password must be between 4-12 characters"
+          args: [3, 120],
+          msg: "Restaurant cuisine must be between 4-12 characters"
       }
     }
   },
@@ -123,8 +123,8 @@ var Restaurant = connection.define('restaurant', {
     type:Sequelize.STRING,
     validate: {
       len: {
-          args: [4, 12],
-          msg: ", or password must be between 4-12 characters"
+          args: [4, 255],
+          msg: "Address must be between 4-12 characters"
       }
     }
   },
@@ -133,8 +133,8 @@ var Restaurant = connection.define('restaurant', {
     type:Sequelize.STRING,
     validate: {
       len: {
-          args: [4, 12],
-          msg: ", or password must be between 4-12 characters"
+          args: [7, 16],
+          msg: "Phone number must be between 4-12 characters"
       }
     }
   }
@@ -144,7 +144,7 @@ var Restaurant = connection.define('restaurant', {
 // Restaurant.hasMany(Review)
 
 //Account creation via sequelize
-app.post('/create', function(req, res){
+app.post('/', function(req, res){
     User.create(req.body).then(function(result){
       res.redirect('/?msg=Account Created Please LogIn');
     }).catch(function(err) {
@@ -154,7 +154,7 @@ app.post('/create', function(req, res){
 });
 
 
-app.post('/', passport.authenticate('local', {
+app.post('/save', passport.authenticate('local', {
     successRedirect: '/test',
     failureRedirect: '/?msg=Invalid Credentials'
 }));
@@ -164,9 +164,15 @@ app.post('/addRes', function(req, res){
     res.redirect('/listings');
   }).catch(function(err) {
     console.log(err);
-    res.redirect('/?msg='+ "E-mail " + err.errors[0].message);
+    res.redirect('/listings/?msg='+ "E-mail " + err.errors[0].message);
   });
 });
+
+// app.post('/addRes', function(req, res){
+//   console.log("added");
+//   res.redirect('/listings');
+// });
+
 
 /************* SEQUELIZE CODE END *************/
 
