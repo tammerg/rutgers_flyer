@@ -6,7 +6,7 @@ var app = express();
 var PORT = process.env.PORT || 3000;
 //Sequelize database setup
 var Sequelize = require('sequelize');
-var connection = new Sequelize('testdb1', 'root', 'password');
+var connection = new Sequelize('testdb1', 'root', '');
 //requiring passport last
 var passport = require('passport');
 var passportLocal = require('passport-local');
@@ -18,8 +18,8 @@ app.use(bodyParser.urlencoded({
   extended: false
 }));
 //get css,js, or images from files in public folder
-app.use('/scripts', express.static('public/js'));
-app.use('/css', express.static('public/style'));
+app.use('/scripts', express.static('public/scripts'));
+app.use('/css', express.static('public/css'));
 app.use('/img', express.static('public/img'));
 //Initializing and requiring middleware express-session, enabaling cookies
 app.use(require('express-session')({
