@@ -1,3 +1,10 @@
 .restInfo{
   background-color: #E51937;
 }
+.trans {
+  background-color: rgba(0, 0, 0, .4);
+}
+
+footer.page-footer.orange {
+  margin-top: 0;
+}
