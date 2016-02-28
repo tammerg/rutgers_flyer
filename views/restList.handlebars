@@ -1,3 +1,6 @@
+<div class="message">
+  {{ msg }}
+</div>
 <div class="section no-pad-bot" id="index-banner">
   <div class="container">
     <br><br>
@@ -11,8 +14,8 @@
 <div class="container">
   <div class="row">
     {{#each restaurant}}
-      <h3>{{this.name}}:<span>{{this.cuisine}}</span></h3>
-      <h4>{{this.address}} {{this.phone}}</h4>
+      <h3>{{restName}}: <span>{{cuisine}}</span></h3>
+      <h4>{{address}} {{phone}}</h4>
     {{/each}}
   </div>
 </div>
@@ -56,13 +59,13 @@
             <i class="material-icons prefix">call</i> <input class="validate" id="phone" name="phone" type="text"> <label for="phone">Phone Number</label>
           </div>
         </div>
-        <button class="modal-action modal-close waves-effect waves-green">Submit</button>
-      </form>
+      </div>
+      <p></p>
     </div>
-    <p></p>
-  </div>
-  <div class="modal-footer">
-
-    <a class="modal-action modal-close waves-effect waves-green btn-flat" href="#!">Close</a>
-  </div>
+    <div class="modal-footer">
+      <button class="btn waves-effect waves-light col s3" type="submit" name="action">Submit<i class="material-icons right">send</i>
+      </button>
+      <a class="modal-action modal-close waves-effect waves-green btn-flat" href="#!">Close</a>
+    </div>
+  </form>
 </div>
