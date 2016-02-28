@@ -25,7 +25,7 @@ Our app will have a user registration / login system, and a way to add places fo
  - Passport-Local
 
 ## Deployed Link
- - Coming Soon!
+ - http://rufly.herokuapp.com/
 
 ## API's Used
  -

@@ -8,6 +8,7 @@ require('dotenv').config();
 var PORT = process.env.PORT || 3000;
 //Sequelize database setup
 var Sequelize = require('sequelize');
+//  "testdb1", "root", ""
 var connection = new Sequelize(process.env.JAWSDB_URL);
 //requiring passport last
 var passport = require('passport');
@@ -166,7 +167,7 @@ app.post('/addRes', function(req, res){
     res.redirect('/listings');
   }).catch(function(err) {
     console.log(err);
-    res.redirect('/listings/?msg='+ "E-mail " + err.errors[0].message);
+    res.render("restList", {msg: err.errors[0].message});
   });
 });
 
