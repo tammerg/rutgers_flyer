@@ -168,10 +168,6 @@ app.post('/addRes', function(req, res){
   });
 });
 
-// app.post('/addRes', function(req, res){
-//   console.log("added");
-//   res.redirect('/listings');
-// });
 
 
 /************* SEQUELIZE CODE END *************/
@@ -188,10 +184,6 @@ app.get("/listings", function(req, res){
   Restaurant.findAll({}).then(function(restaurant){
     res.render("restList", {restaurant});
   });
-  // res.render('restList',{
-  //   user:req.user,
-  //   isAuthenticated: req.isAuthenticated()
-  // });
 });
 
 app.get("/test", function(req, res){
