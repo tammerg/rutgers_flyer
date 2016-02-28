@@ -147,7 +147,7 @@ var Restaurant = connection.define('restaurant', {
 // Restaurant.hasMany(Review)
 
 //Account creation via sequelize
-app.post('/', function(req, res){
+app.post('/create', function(req, res){
     User.create(req.body).then(function(result){
       res.redirect('/?msg=Account Created Please LogIn');
     }).catch(function(err) {
@@ -157,7 +157,7 @@ app.post('/', function(req, res){
 });
 
 
-app.post('/save', passport.authenticate('local', {
+app.post('/', passport.authenticate('local', {
     successRedirect: '/test',
     failureRedirect: '/?msg=Invalid Credentials'
 }));
