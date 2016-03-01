@@ -117,7 +117,7 @@ var Restaurant = connection.define('restaurant', {
     validate: {
       len: {
           args: [3, 120],
-          msg: "Restaurant cuisine must be between 4-12 characters"
+          msg: "Restaurant cuisine must be between 3-120 characters"
       }
     }
   },
@@ -127,7 +127,7 @@ var Restaurant = connection.define('restaurant', {
     validate: {
       len: {
           args: [4, 255],
-          msg: "Address must be between 4-12 characters"
+          msg: "Address must be between 4-255 characters"
       }
     }
   },
@@ -137,7 +137,17 @@ var Restaurant = connection.define('restaurant', {
     validate: {
       len: {
           args: [7, 16],
-          msg: "Phone number must be between 4-12 characters"
+          msg: "Phone number must be between 7-16 characters"
+      }
+    }
+  },
+  description:{
+    allowNull: false,
+    type:Sequelize.STRING,
+    validate: {
+      len: {
+          args: [1, 150],
+          msg: "Description must be less than 150 characters"
       }
     }
   }
