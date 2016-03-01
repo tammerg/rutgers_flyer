@@ -20,12 +20,14 @@
       <h4>{{address}} {{phone}}</h4>
       <p>{{description}}</p>
       <!-- Click for more info -->
-      <!-- Button to leave restaurant review -->
+      <!-- Button to leave restaurant review so this is HIDDEN on load-->
       <form method="POST" action="/review" class="col s12">
         <h3>Leave a review</h3>
         <div class="row">
           <div class="input-field col s12 col m6">
-            <i class="material-icons prefix">business</i> <input class="validate" id="revTitle" name="revTitle" type="text"> <label for="revTitle">Review Title</label>
+            <i class="material-icons prefix">business</i>
+            <input class="validate" id="revTitle" name="revTitle" type="text">
+            <label for="revTitle">Review Title</label>
           </div>
           <!-- Make this a predetermined dropdown -->
           <div class="input-field col s12 col m6">
@@ -39,8 +41,8 @@
             <label for="review">Review</label>
           </div>
         </div>
-          <button class="btn waves-effect waves-light col s3" type="submit" name="action">Submit<i class="material-icons right">send</i>
-          </button>
+        <button class="btn waves-effect waves-light col s3" type="submit" name="action">Submit<i class="material-icons right">send</i>
+        </button>
       </form>
     {{/each}}
   </div>
