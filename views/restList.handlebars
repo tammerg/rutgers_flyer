@@ -20,8 +20,28 @@
       <h4>{{address}} {{phone}}</h4>
       <p>{{description}}</p>
       <!-- Click for more info -->
-      <!-- Button to rate restaurant -->
       <!-- Button to leave restaurant review -->
+      <form method="POST" action="/review" class="col s12">
+        <h3>Leave a review</h3>
+        <div class="row">
+          <div class="input-field col s12 col m6">
+            <i class="material-icons prefix">business</i> <input class="validate" id="revTitle" name="revTitle" type="text"> <label for="revTitle">Review Title</label>
+          </div>
+          <!-- Make this a predetermined dropdown -->
+          <div class="input-field col s12 col m6">
+            <!-- <i class="material-icons prefix">receipt</i> -->
+            <input type="date" class="datepicker" id="date" name="dineDate">
+            <label for="cuisine">Dine Date</label>
+          </div>
+          <div class="input-field col s12">
+            <i class="material-icons prefix">description</i>
+            <textarea id="review" class="materialize-textarea validate" name="review" length="255"></textarea>
+            <label for="review">Review</label>
+          </div>
+        </div>
+          <button class="btn waves-effect waves-light col s3" type="submit" name="action">Submit<i class="material-icons right">send</i>
+          </button>
+      </form>
     {{/each}}
   </div>
 </div>

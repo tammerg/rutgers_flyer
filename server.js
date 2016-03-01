@@ -153,6 +153,34 @@ var Restaurant = connection.define('restaurant', {
   }
 });
 
+// var Review = connection.define('review', {
+//   revTitle: {
+//     type:Sequelize.STRING,
+//     allowNull: false,
+//     unique: true
+//   },
+//   dineDate: {
+//     type:Sequelize.STRING,
+//     allowNull: false,
+//     validate: {
+//       len: {
+//           args: [4, 12],
+//           msg: "Please choose a date"
+//       }
+//     }
+//   },
+//   review: {
+//     type:Sequelize.STRING,
+//     allowNull: false,
+//     validate: {
+//       len: {
+//           args: [25, 255],
+//           msg: "Reviews must be 25-255 characters"
+//       }
+//     }
+//   }
+// });
+
 // User.hasMany(Review)
 // Restaurant.hasMany(Review)
 
@@ -180,6 +208,16 @@ app.post('/addRes', function(req, res){
     res.render("restList", {msg: err.errors[0].message});
   });
 });
+
+// app.post('/review', function(req, res){
+//   //if user is authenticated they can review
+//   Review.create(req.body).then(function(result){
+//     res.redirect('/listings');
+//   }).catch(function(err) {
+//     console.log(err);
+//     res.render("restList", {msg: err.errors[0].message});
+//   });
+// });
 
 
 
