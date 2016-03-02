@@ -8,8 +8,8 @@ require('dotenv').config();
 var PORT = process.env.PORT || 3000;
 //Sequelize database setup
 var Sequelize = require('sequelize');
-//    "testdb1", "root", ""
-var connection = new Sequelize(process.env.JAWSDB_URL);
+//    process.env.JAWSDB_URL
+var connection = new Sequelize("testdb1", "root", "");
 //requiring passport last
 var passport = require('passport');
 var passportLocal = require('passport-local');
@@ -116,8 +116,8 @@ var Restaurant = connection.define('restaurant', {
     allowNull: false,
     validate: {
       len: {
-          args: [3, 120],
-          msg: "Restaurant cuisine must be between 3-120 characters"
+        args: [3, 120],
+        msg: "Restaurant cuisine must be between 3-120 characters"
       }
     }
   },
@@ -126,8 +126,8 @@ var Restaurant = connection.define('restaurant', {
     type:Sequelize.STRING,
     validate: {
       len: {
-          args: [4, 255],
-          msg: "Address must be between 4-255 characters"
+        args: [4, 255],
+        msg: "Address must be between 4-255 characters"
       }
     }
   },
@@ -136,8 +136,8 @@ var Restaurant = connection.define('restaurant', {
     type:Sequelize.STRING,
     validate: {
       len: {
-          args: [7, 16],
-          msg: "Phone number must be between 7-16 characters"
+        args: [7, 16],
+        msg: "Phone number must be between 7-16 characters"
       }
     }
   },
@@ -146,8 +146,8 @@ var Restaurant = connection.define('restaurant', {
     type:Sequelize.STRING,
     validate: {
       len: {
-          args: [1, 150],
-          msg: "Description must be less than 150 characters"
+        args: [1, 150],
+        msg: "Description must be less than 150 characters"
       }
     }
   }
@@ -164,8 +164,8 @@ var Review = connection.define('review', {
     allowNull: false,
     validate: {
       len: {
-          args: [4, 12],
-          msg: "Please choose a date"
+        args: [4, 16],
+        msg: "Please choose a date"
       }
     }
   },
@@ -174,8 +174,8 @@ var Review = connection.define('review', {
     allowNull: false,
     validate: {
       len: {
-          args: [25, 255],
-          msg: "Reviews must be 25-255 characters"
+        args: [25, 255],
+        msg: "Reviews must be 25-255 characters"
       }
     }
   }
@@ -210,13 +210,15 @@ app.post('/addRes', function(req, res){
 });
 
 app.post('/review', function(req, res){
+  debugger;
   //if user is authenticated they can review
-  Review.create(req.body).then(function(result){
-    res.redirect('/listings');
-  }).catch(function(err) {
-    console.log(err);
-    res.render("restList", {msg: err.errors[0].message});
-  });
+  console.log(req.params);
+  // Review.create(req.body).then(function(result){
+  //   res.redirect('/listings');
+  // }).catch(function(err) {
+  //   console.log(err);
+  //   res.render("restList", {msg: err.errors[0].message});
+  // });
 });
 
 
@@ -232,7 +234,11 @@ app.get('/', function(req, res) {
 });
 
 app.get("/listings", function(req, res){
-  Restaurant.findAll({}).then(function(restaurant){
+  Restaurant.findAll({
+    include: [{
+      model: Review
+    }]
+  }).then(function(restaurant){
     res.render("restList", {restaurant});
   });
 });
