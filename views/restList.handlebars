@@ -38,7 +38,7 @@
       <!-- Add Button to leave review so this is HIDDEN on load-->
       <!-- Add way to star rate restaurant -->
       {{#if isAuthenticated}}
-      <form method="POST" action="/review/{{id}}" class="col s12">
+      <form method="POST" action="/review/{{id}}/{{ user.id }}" class="col s12">
         <h3>Leave a review</h3>
         <!-- Need a rating system -->
         <div class="row">

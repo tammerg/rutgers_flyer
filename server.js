@@ -8,8 +8,8 @@ require('dotenv').config();
 var PORT = process.env.PORT || 3000;
 //Sequelize database setup
 var Sequelize = require('sequelize');
-//   process.env.JAWSDB_URL
-var connection = new Sequelize("testdb1", "root", "");
+//  "testdb1", "root", ""
+var connection = new Sequelize(process.env.JAWSDB_URL);
 //requiring passport last
 var passport = require('passport');
 var passportLocal = require('passport-local');
@@ -209,13 +209,13 @@ app.post('/addRes', function(req, res){
   });
 });
 
-app.post('/review/:restaurantId', function(req, res){
+app.post('/review/:restaurantId/userId', function(req, res){
   //if user is authenticated they can review
   Review.create({
     revTitle: req.body.revTitle,
     dineDate: req.body.dineDate,
     review: req.body.review,
-    // userId: req.params.userId,
+    userId: req.params.userId,
     restaurantId: req.params.restaurantId
   }).then(function(result){
     res.redirect('/listings');
