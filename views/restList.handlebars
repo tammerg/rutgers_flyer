@@ -37,8 +37,8 @@
       {{/each}}
       <!-- Add Button to leave review so this is HIDDEN on load-->
       <!-- Add way to star rate restaurant -->
-      {{#if isAuthenticated}}
-      <form method="POST" action="/review/{{id}}/{{ user.id }}" class="col s12">
+      <!-- {{#if isAuthenticated}} -->
+      <form method="POST" action="/review/{{id}}" class="col s12">
         <h3>Leave a review</h3>
         <!-- Need a rating system -->
         <div class="row">
@@ -63,11 +63,11 @@
         </button>
       </form>
 
-      {{else}}
+      <!-- {{else}} -->
         <div class="col s12">
         <p><a href="/">Log in to leave a review</a></p>
         </div>
-      {{/if}}
+      <!-- {{/if}} -->
     {{/each}}
   </div>
 </div>
