@@ -289,7 +289,7 @@ if (app.get('env') === 'development') {
   });
 }
 // database connection via sequelize
-connection.sync().then(function() {
+connection.sync({force:true}).then(function() {
   app.listen(PORT, function() {
     console.log("Listening on!!:" + PORT);
   });
