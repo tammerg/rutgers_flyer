@@ -209,7 +209,7 @@ app.post('/addRes', function(req, res){
   });
 });
 
-app.post('/review/:restaurantId/userId', function(req, res){
+app.post('/review/:restaurantId', function(req, res){
   //if user is authenticated they can review
   Review.create({
     revTitle: req.body.revTitle,
@@ -244,9 +244,9 @@ app.get("/listings", function(req, res){
     }]
   }).then(function(restaurant){
     res.render("restList", {
-      restaurant: restaurant,
       user:req.user,
-      isAuthenticated: req.isAuthenticated()
+      isAuthenticated: req.isAuthenticated(),
+      restaurant: restaurant
     });
   });
 });

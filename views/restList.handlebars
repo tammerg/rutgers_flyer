@@ -25,20 +25,15 @@
       <p>{{description}}</p>
     </div>
       {{#each reviews}}
-        <!-- <div class="row"> -->
-          <div class="col s6 m4">
-            <div class="card-panel light-blue lighten-1 white-text">
-              <h5>{{revTitle}}</h5>
-              <p>Dined on {{dineDate}}</p>
-              <p>"{{review}}"</p>
-            </div>
+        <div class="col s6 m4">
+          <div class="card-panel light-blue lighten-1 white-text">
+            <h5>{{revTitle}}</h5>
+            <p>Dined on {{dineDate}}</p>
+            <p>"{{review}}"</p>
           </div>
-        <!-- </div> -->
+        </div>
       {{/each}}
-      <!-- Add Button to leave review so this is HIDDEN on load-->
-      <!-- Add way to star rate restaurant -->
-      <!-- {{#if isAuthenticated}} -->
-      <form method="POST" action="/review/{{id}}" class="col s12">
+       <form method="POST" action="/review/{{id}}" class="col s12">
         <h3>Leave a review</h3>
         <!-- Need a rating system -->
         <div class="row">
@@ -49,7 +44,6 @@
           </div>
           <!-- Make this a predetermined dropdown -->
           <div class="input-field col s12 col m6">
-            <!-- <i class="material-icons prefix">receipt</i> -->
             <input type="date" class="datepicker" id="date" name="dineDate">
             <label for="cuisine">Dine Date</label>
           </div>
@@ -62,6 +56,9 @@
         <button class="btn waves-effect waves-light col s3" type="submit" name="action">Submit<i class="material-icons right">send</i>
         </button>
       </form>
+      <!-- Add Button to leave review so this is HIDDEN on load-->
+      <!-- Add way to star rate restaurant -->
+      <!-- {{#if isAuthenticated}} -->
 
       <!-- {{else}} -->
         <div class="col s12">
