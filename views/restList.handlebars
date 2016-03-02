@@ -20,8 +20,16 @@
       <h4>{{address}} {{phone}}</h4>
       <p>{{description}}</p>
       {{#each reviews}}
-        <h5>{{revTitle}}, Dine Date: {{dineDate}}</h5>
-        <p>{{review}}</p>
+        <div class="row">
+          <div class="col s6 m4">
+            <div class="card-panel light-blue lighten-1 white-text">
+              <h5>{{revTitle}}</h5>
+              <h6>Dined on {{dineDate}}</h6>
+              <p>"{{review}}"</p>
+            </div>
+          </div>
+        </div>
+
       {{/each}}
       <!-- Add Button to leave review so this is HIDDEN on load-->
       <form method="POST" action="/review/{{id}}" class="col s12">
