@@ -8,7 +8,7 @@ require('dotenv').config();
 var PORT = process.env.PORT || 3000;
 //Sequelize database setup
 var Sequelize = require('sequelize');
-//  "testdb1", "root", ""
+//    "testdb1", "root", ""
 var connection = new Sequelize(process.env.JAWSDB_URL);
 //requiring passport last
 var passport = require('passport');
@@ -153,36 +153,36 @@ var Restaurant = connection.define('restaurant', {
   }
 });
 
-// var Review = connection.define('review', {
-//   revTitle: {
-//     type:Sequelize.STRING,
-//     allowNull: false,
-//     unique: true
-//   },
-//   dineDate: {
-//     type:Sequelize.STRING,
-//     allowNull: false,
-//     validate: {
-//       len: {
-//           args: [4, 12],
-//           msg: "Please choose a date"
-//       }
-//     }
-//   },
-//   review: {
-//     type:Sequelize.STRING,
-//     allowNull: false,
-//     validate: {
-//       len: {
-//           args: [25, 255],
-//           msg: "Reviews must be 25-255 characters"
-//       }
-//     }
-//   }
-// });
+var Review = connection.define('review', {
+  revTitle: {
+    type:Sequelize.STRING,
+    allowNull: false,
+    unique: true
+  },
+  dineDate: {
+    type:Sequelize.STRING,
+    allowNull: false,
+    validate: {
+      len: {
+          args: [4, 12],
+          msg: "Please choose a date"
+      }
+    }
+  },
+  review: {
+    type:Sequelize.STRING,
+    allowNull: false,
+    validate: {
+      len: {
+          args: [25, 255],
+          msg: "Reviews must be 25-255 characters"
+      }
+    }
+  }
+});
 
-// User.hasMany(Review)
-// Restaurant.hasMany(Review)
+User.hasMany(Review)
+Restaurant.hasMany(Review)
 
 //Account creation via sequelize
 app.post('/create', function(req, res){
@@ -209,15 +209,15 @@ app.post('/addRes', function(req, res){
   });
 });
 
-// app.post('/review', function(req, res){
-//   //if user is authenticated they can review
-//   Review.create(req.body).then(function(result){
-//     res.redirect('/listings');
-//   }).catch(function(err) {
-//     console.log(err);
-//     res.render("restList", {msg: err.errors[0].message});
-//   });
-// });
+app.post('/review', function(req, res){
+  //if user is authenticated they can review
+  Review.create(req.body).then(function(result){
+    res.redirect('/listings');
+  }).catch(function(err) {
+    console.log(err);
+    res.render("restList", {msg: err.errors[0].message});
+  });
+});
 
 
 
