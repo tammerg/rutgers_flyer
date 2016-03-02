@@ -116,8 +116,8 @@ var Restaurant = connection.define('restaurant', {
     allowNull: false,
     validate: {
       len: {
-          args: [3, 120],
-          msg: "Restaurant cuisine must be between 4-12 characters"
+        args: [3, 120],
+        msg: "Restaurant cuisine must be between 3-120 characters"
       }
     }
   },
@@ -126,8 +126,8 @@ var Restaurant = connection.define('restaurant', {
     type:Sequelize.STRING,
     validate: {
       len: {
-          args: [4, 255],
-          msg: "Address must be between 4-12 characters"
+        args: [4, 255],
+        msg: "Address must be between 4-255 characters"
       }
     }
   },
@@ -136,15 +136,53 @@ var Restaurant = connection.define('restaurant', {
     type:Sequelize.STRING,
     validate: {
       len: {
-          args: [7, 16],
-          msg: "Phone number must be between 4-12 characters"
+        args: [7, 16],
+        msg: "Phone number must be between 7-16 characters"
+      }
+    }
+  },
+  description:{
+    allowNull: false,
+    type:Sequelize.STRING,
+    validate: {
+      len: {
+        args: [1, 150],
+        msg: "Description must be less than 150 characters"
       }
     }
   }
 });
 
-// User.hasMany(Review)
-// Restaurant.hasMany(Review)
+var Review = connection.define('review', {
+  revTitle: {
+    type:Sequelize.STRING,
+    allowNull: false,
+    unique: true
+  },
+  dineDate: {
+    type:Sequelize.STRING,
+    allowNull: false,
+    validate: {
+      len: {
+        args: [4, 16],
+        msg: "Please choose a date"
+      }
+    }
+  },
+  review: {
+    type:Sequelize.STRING,
+    allowNull: false,
+    validate: {
+      len: {
+        args: [25, 255],
+        msg: "Reviews must be 25-255 characters"
+      }
+    }
+  }
+});
+
+User.hasMany(Review)
+Restaurant.hasMany(Review)
 
 //Account creation via sequelize
 app.post('/create', function(req, res){
@@ -171,6 +209,22 @@ app.post('/addRes', function(req, res){
   });
 });
 
+app.post('/review/:restaurantId/userId', function(req, res){
+  //if user is authenticated they can review
+  Review.create({
+    revTitle: req.body.revTitle,
+    dineDate: req.body.dineDate,
+    review: req.body.review,
+    userId: req.params.userId,
+    restaurantId: req.params.restaurantId
+  }).then(function(result){
+    res.redirect('/listings');
+  }).catch(function(err) {
+    console.log(err);
+    res.render("restList", {msg: err.errors[0].message});
+  });
+});
+
 
 
 /************* SEQUELIZE CODE END *************/
@@ -184,8 +238,14 @@ app.get('/', function(req, res) {
 });
 
 app.get("/listings", function(req, res){
-  Restaurant.findAll({}).then(function(restaurant){
-    res.render("restList", {restaurant});
+  Restaurant.findAll({
+    include: [{
+      model: Review
+    }]
+  }).then(function(restaurant){
+    res.render("restList", {
+      restaurant: restaurant
+    });
   });
 });
 

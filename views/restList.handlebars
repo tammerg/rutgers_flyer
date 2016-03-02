@@ -1,9 +1,11 @@
-<div class="section no-pad-bot" id="index-banner">
-  <div class="container">
-    <br><br>
-    <h1 class="header center orange-text">Restaurant Listings</h1>
-    <div class="row center">
-      <h5 class="header col s12 light">Here are some different restaurants around campus</h5>
+<div class="section no-pad-bot" id="listing-banner">
+  <div class="listTrans">
+    <div class="container">
+      <br><br>
+      <h1 class="header center orange-text">Restaurant Listings</h1>
+      <div class="row center">
+        <h5 class="header col s12 light white-text">Here are some different restaurants around campus</h5>
+      </div>
     </div>
   </div>
 </div>
@@ -11,12 +13,61 @@
 <div class="message container center red">
   {{ msg }}
 </div>
-
+<!-- Make this sortable -->
 <div class="container">
   <div class="row">
     {{#each restaurant}}
-      <h3>{{restName}}: <span class="rest-cuisine">{{cuisine}}</span></h3>
-      <h4>{{address}} {{phone}}</h4>
+    <div class="col s12">
+      <h3>{{restName}}</h3>
+      <h4>{{address}} Tel: {{phone}}</h4>
+      <h4></h4>
+      <h4><span class="rest-cuisine">Cuisine: {{cuisine}}</span></h4>
+      <p>{{description}}</p>
+    </div>
+      {{#each reviews}}
+        <!-- <div class="row"> -->
+          <div class="col s6 m4">
+            <div class="card-panel light-blue lighten-1 white-text">
+              <h5>{{revTitle}}</h5>
+              <p>Dined on {{dineDate}}</p>
+              <p>"{{review}}"</p>
+            </div>
+          </div>
+        <!-- </div> -->
+      {{/each}}
+      <!-- Add Button to leave review so this is HIDDEN on load-->
+      <!-- Add way to star rate restaurant -->
+      {{#if isAuthenticated}}
+      <form method="POST" action="/review/{{id}}/{{ user.id }}" class="col s12">
+        <h3>Leave a review</h3>
+        <!-- Need a rating system -->
+        <div class="row">
+          <div class="input-field col s12 col m6">
+            <i class="material-icons prefix">business</i>
+            <input class="validate" id="revTitle" name="revTitle" type="text">
+            <label for="revTitle">Review Title</label>
+          </div>
+          <!-- Make this a predetermined dropdown -->
+          <div class="input-field col s12 col m6">
+            <!-- <i class="material-icons prefix">receipt</i> -->
+            <input type="date" class="datepicker" id="date" name="dineDate">
+            <label for="cuisine">Dine Date</label>
+          </div>
+          <div class="input-field col s12">
+            <i class="material-icons prefix">description</i>
+            <textarea id="review" class="materialize-textarea validate" name="review" length="255"></textarea>
+            <label for="review">Review</label>
+          </div>
+        </div>
+        <button class="btn waves-effect waves-light col s3" type="submit" name="action">Submit<i class="material-icons right">send</i>
+        </button>
+      </form>
+
+      {{else}}
+        <div class="col s12">
+        <p><a href="/">Log in to leave a review</a></p>
+        </div>
+      {{/if}}
     {{/each}}
   </div>
 </div>
@@ -51,6 +102,11 @@
           </div>
         </div>
         <div class="row">
+          <div class="input-field col s12">
+            <i class="material-icons prefix">description</i>
+            <textarea id="description" class="materialize-textarea validate" name="description" length="150"></textarea>
+            <label for="description">Description</label>
+          </div>
           <div class="input-field col s12">
             <i class="material-icons prefix">room</i> <input class="validate" id="address" name="address" type="text"> <label for="address">Address</label>
           </div>
