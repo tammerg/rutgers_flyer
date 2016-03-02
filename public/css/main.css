@@ -8,3 +8,13 @@
 footer.page-footer.orange {
   margin-top: 0;
 }
+.googleMap{
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#map{
+  text-align: center;
+  height: 400px;
+  width: 500px;
+}
