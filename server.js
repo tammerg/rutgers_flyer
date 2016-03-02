@@ -276,22 +276,22 @@ app.get('/restinfo', function(req, res){
 
 //error handlers must go after exphb code
 app.use(function(req, res, next) {
-  var err = new Error('Not Found');
+  var err = new Error('404 Not Found');
   err.status = 404;
   next(err);
-   res.render('error', {
-      message: err.message,
-      error: err
-    });
 });
 //catch 404 and forward to error handler
 if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
     res.status(err.status || 500);
+     res.render('error', {
+      message: err.message,
+      error: err
+    });
   });
 }
 // database connection via sequelize
-connection.sync({force:true}).then(function() {
+connection.sync({}).then(function() {
   app.listen(PORT, function() {
     console.log("Listening on!!:" + PORT);
   });
