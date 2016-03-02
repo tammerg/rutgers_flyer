@@ -8,8 +8,8 @@ require('dotenv').config();
 var PORT = process.env.PORT || 3000;
 //Sequelize database setup
 var Sequelize = require('sequelize');
-//    process.env.JAWSDB_URL
-var connection = new Sequelize("testdb1", "root", "");
+//   "testdb1", "root", ""
+var connection = new Sequelize(process.env.JAWSDB_URL);
 //requiring passport last
 var passport = require('passport');
 var passportLocal = require('passport-local');
@@ -243,7 +243,9 @@ app.get("/listings", function(req, res){
       model: Review
     }]
   }).then(function(restaurant){
-    res.render("restList", {restaurant});
+    res.render("restList", {
+      restaurant: restaurant
+    });
   });
 });
 
