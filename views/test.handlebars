@@ -1,7 +1,7 @@
 {{!-- This code only lets the user see the page if they are logged in need to figure out if it should go in the main handlebars--}}
 <div>
   {{#if isAuthenticated}}
-  {{/if}}
+
   <div class="row">
 <div class="teal" style="position:fixed;right:0px; bottom:0px"> <i class="material-icons">recent_actors</i>{{ user.username }}</div>
   </div>
@@ -13,8 +13,8 @@
       <a href="">    <img class="materialboxed" width="650" src="http://s9.favim.com/orig/140123/chocolate-chocolate-cake-food-food-porn-Favim.com-1293417.jpg"></a>
       </div>
     </div>
-
-   {{!--  {{else}}
+{{/if}}
+   {{else}}
     <h1 class="center"style="color:yellow">SORRY YOU ARE NOT LOGGED IN</h1> --}}
 </div>
 

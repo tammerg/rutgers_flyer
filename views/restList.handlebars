@@ -13,16 +13,19 @@
 <div class="message container center red">
   {{ msg }}
 </div>
-
+<!-- Make this sortable -->
 <div class="container">
   <div class="row">
     {{#each restaurant}}
+    <div class="col s12">
       <h3>{{restName}}</h3>
-      <h4><span class="rest-cuisine">{{cuisine}}</span></h4>
-      <h4>{{address}} {{phone}}</h4>
+      <h4>{{address}} Tel: {{phone}}</h4>
+      <h4></h4>
+      <h4><span class="rest-cuisine">Cuisine: {{cuisine}}</span></h4>
       <p>{{description}}</p>
+    </div>
       {{#each reviews}}
-        <div class="row">
+        <!-- <div class="row"> -->
           <div class="col s6 m4">
             <div class="card-panel light-blue lighten-1 white-text">
               <h5>{{revTitle}}</h5>
@@ -30,10 +33,11 @@
               <p>"{{review}}"</p>
             </div>
           </div>
-        </div>
-
+        <!-- </div> -->
       {{/each}}
       <!-- Add Button to leave review so this is HIDDEN on load-->
+      <!-- Add way to star rate restaurant -->
+      {{#if isAuthenticated}}
       <form method="POST" action="/review/{{id}}" class="col s12">
         <h3>Leave a review</h3>
         <!-- Need a rating system -->
@@ -58,6 +62,12 @@
         <button class="btn waves-effect waves-light col s3" type="submit" name="action">Submit<i class="material-icons right">send</i>
         </button>
       </form>
+
+      {{else}}
+        <div class="col s12">
+        <p><a href="/">Log in to leave a review</a></p>
+        </div>
+      {{/if}}
     {{/each}}
   </div>
 </div>
