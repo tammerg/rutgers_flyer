@@ -8,6 +8,7 @@ require('dotenv').config();
 var PORT = process.env.PORT || 3000;
 //Sequelize database setup
 var Sequelize = require('sequelize');
+//  "testdb1", "root", ""
 var connection = new Sequelize(process.env.JAWSDB_URL);
 //requiring passport last
 var passport = require('passport');
@@ -104,6 +105,85 @@ var User = connection.define('user', {
   }
 });
 
+var Restaurant = connection.define('restaurant', {
+  restName: {
+    type:Sequelize.STRING,
+    allowNull: false,
+    unique: true
+  },
+  cuisine: {
+    type:Sequelize.STRING,
+    allowNull: false,
+    validate: {
+      len: {
+        args: [3, 120],
+        msg: "Restaurant cuisine must be between 3-120 characters"
+      }
+    }
+  },
+  address: {
+    allowNull: false,
+    type:Sequelize.STRING,
+    validate: {
+      len: {
+        args: [4, 255],
+        msg: "Address must be between 4-255 characters"
+      }
+    }
+  },
+  phone:{
+    allowNull: false,
+    type:Sequelize.STRING,
+    validate: {
+      len: {
+        args: [7, 16],
+        msg: "Phone number must be between 7-16 characters"
+      }
+    }
+  },
+  description:{
+    allowNull: false,
+    type:Sequelize.STRING,
+    validate: {
+      len: {
+        args: [1, 150],
+        msg: "Description must be less than 150 characters"
+      }
+    }
+  }
+});
+
+var Review = connection.define('review', {
+  revTitle: {
+    type:Sequelize.STRING,
+    allowNull: false,
+    unique: true
+  },
+  dineDate: {
+    type:Sequelize.STRING,
+    allowNull: false,
+    validate: {
+      len: {
+        args: [4, 16],
+        msg: "Please choose a date"
+      }
+    }
+  },
+  review: {
+    type:Sequelize.STRING,
+    allowNull: false,
+    validate: {
+      len: {
+        args: [25, 255],
+        msg: "Reviews must be 25-255 characters"
+      }
+    }
+  }
+});
+
+User.hasMany(Review)
+Restaurant.hasMany(Review)
+
 //Account creation via sequelize
 app.post('/create', function(req, res){
     User.create(req.body).then(function(result){
@@ -116,9 +196,36 @@ app.post('/create', function(req, res){
 
 
 app.post('/', passport.authenticate('local', {
-    successRedirect: '/test',
+    successRedirect: '/listings',
     failureRedirect: '/?msg=Invalid Credentials'
 }));
+
+app.post('/addRes', function(req, res){
+  Restaurant.create(req.body).then(function(result){
+    res.redirect('/listings');
+  }).catch(function(err) {
+    console.log(err);
+    res.render("restList", {msg: err.errors[0].message});
+  });
+});
+
+app.post('/review/:restaurantId/userId', function(req, res){
+  //if user is authenticated they can review
+  Review.create({
+    revTitle: req.body.revTitle,
+    dineDate: req.body.dineDate,
+    review: req.body.review,
+    userId: req.params.userId,
+    restaurantId: req.params.restaurantId
+  }).then(function(result){
+    res.redirect('/listings');
+  }).catch(function(err) {
+    console.log(err);
+    res.render("restList", {msg: err.errors[0].message});
+  });
+});
+
+
 
 /************* SEQUELIZE CODE END *************/
 
@@ -131,9 +238,16 @@ app.get('/', function(req, res) {
 });
 
 app.get("/listings", function(req, res){
-  res.render('restList',{
-    user:req.user,
-    isAuthenticated: req.isAuthenticated()
+  Restaurant.findAll({
+    include: [{
+      model: Review
+    }]
+  }).then(function(restaurant){
+    res.render("restList", {
+      restaurant: restaurant,
+      user:req.user,
+      isAuthenticated: req.isAuthenticated()
+    });
   });
 });
 
@@ -151,10 +265,7 @@ app.get('/restinfo', function(req, res){
   });
 });
 
-app.post('/addRes', function(req, res){
-  console.log("added");
-  res.redirect('/listings');
-});
+
 
 
 
@@ -165,7 +276,7 @@ app.post('/addRes', function(req, res){
 
 //error handlers must go after exphb code
 app.use(function(req, res, next) {
-  var err = new Error('Not Found');
+  var err = new Error('404 Not Found');
   err.status = 404;
   next(err);
 });
@@ -173,14 +284,14 @@ app.use(function(req, res, next) {
 if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
     res.status(err.status || 500);
-    res.render('error', {
+     res.render('error', {
       message: err.message,
       error: err
     });
   });
 }
 // database connection via sequelize
-connection.sync().then(function() {
+connection.sync({}).then(function() {
   app.listen(PORT, function() {
     console.log("Listening on!!:" + PORT);
   });

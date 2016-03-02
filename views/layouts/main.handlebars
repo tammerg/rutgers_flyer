@@ -3,7 +3,7 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
-    <title></title>
+    <title>RU Fly</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/css/main.css">
@@ -12,7 +12,8 @@
     <nav class="light-blue lighten-1" role="navigation">
       <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">RU Fly</a>
         <ul class="right hide-on-med-and-down">
-          <li><a href="#">Navbar Link</a></li>
+          <li><a href="/listings">Listings</a></li>
+          <li><a href="#">Reviews</a></li>
         </ul>
 
         <ul id="nav-mobile" class="side-nav">
@@ -47,6 +48,12 @@
           </div>
         </div>
       </div>
+
+      {{#if isAuthenticated}}
+      <div class="teal" style="position:fixed;right:0px; bottom:0px"> <i class="material-icons">recent_actors</i>{{ user.username }}</div>
+      {{else}}
+      <div class="teal" style="position:fixed;right:0px; bottom:0px"> <i class= "material-icons">recent_actors</i>Please Log In</div>
+      {{/if}}
     {{!--   <div class="footer-copyright">
         <div class="container">
         Made by <a class="orange-text text-lighten-3" href="http://materializecss.com">Steph, Victor, Tammer</a>

@@ -1,9 +1,7 @@
 {{!-- This code only lets the user see the page if they are logged in need to figure out if it should go in the main handlebars--}}
 <div>
   {{#if isAuthenticated}}
-  {{/if}}
   <div class="row">
-<div class="teal" style="position:fixed;right:0px; bottom:0px"> <i class="material-icons">recent_actors</i>{{ user.username }}</div>
   </div>
     <div class="row">
       <div class="row col s6">
@@ -14,8 +12,9 @@
       </div>
     </div>
 
-   {{!--  {{else}}
+   {{else}}
     <h1 class="center"style="color:yellow">SORRY YOU ARE NOT LOGGED IN</h1> --}}
+  {{/if}}
 </div>
 
 <div class="center"><input type="filepicker" data-fp-apikey="AbwDZpo3gTOyH18Lb4FHFz"

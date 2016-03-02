@@ -1,10 +1,24 @@
+.rLogo {
+  height: 100px;
+  width: 100px;
+}
+.listTrans{
+  background-color: rgba(0, 0, 0, .4);
+}
+#listing-banner{
+  background: url("/img/breakfast.jpg");
+  background-size: cover;
+  background-position: 75% 42%;
+}
 .restInfo{
   background-color: #E51937;
 }
 .trans {
-  background-color: rgba(0, 0, 0, .4);
+  background-color: rgba(0, 0, 0, .35);
 }
-
+.rest-cuisine {
+  font-style: italic;
+}
 footer.page-footer.orange {
   margin-top: 0;
 }
