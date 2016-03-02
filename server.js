@@ -196,7 +196,7 @@ app.post('/create', function(req, res){
 
 
 app.post('/', passport.authenticate('local', {
-    successRedirect: '/test',
+    successRedirect: '/listings',
     failureRedirect: '/?msg=Invalid Credentials'
 }));
 
@@ -244,7 +244,9 @@ app.get("/listings", function(req, res){
     }]
   }).then(function(restaurant){
     res.render("restList", {
-      restaurant: restaurant
+      restaurant: restaurant,
+      user:req.user,
+      isAuthenticated: req.isAuthenticated()
     });
   });
 });
@@ -277,15 +279,15 @@ app.use(function(req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
   next(err);
+   res.render('error', {
+      message: err.message,
+      error: err
+    });
 });
 //catch 404 and forward to error handler
 if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
     res.status(err.status || 500);
-    res.render('error', {
-      message: err.message,
-      error: err
-    });
   });
 }
 // database connection via sequelize
