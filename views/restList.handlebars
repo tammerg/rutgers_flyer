@@ -1,9 +1,11 @@
-<div class="section no-pad-bot" id="index-banner">
-  <div class="container">
-    <br><br>
-    <h1 class="header center orange-text">Restaurant Listings</h1>
-    <div class="row center">
-      <h5 class="header col s12 light">Here are some different restaurants around campus</h5>
+<div class="section no-pad-bot" id="listing-banner">
+  <div class="listTrans">
+    <div class="container">
+      <br><br>
+      <h1 class="header center orange-text">Restaurant Listings</h1>
+      <div class="row center">
+        <h5 class="header col s12 light white-text">Here are some different restaurants around campus</h5>
+      </div>
     </div>
   </div>
 </div>
@@ -24,7 +26,7 @@
           <div class="col s6 m4">
             <div class="card-panel light-blue lighten-1 white-text">
               <h5>{{revTitle}}</h5>
-              <h6>Dined on {{dineDate}}</h6>
+              <p>Dined on {{dineDate}}</p>
               <p>"{{review}}"</p>
             </div>
           </div>
@@ -34,6 +36,7 @@
       <!-- Add Button to leave review so this is HIDDEN on load-->
       <form method="POST" action="/review/{{id}}" class="col s12">
         <h3>Leave a review</h3>
+        <!-- Need a rating system -->
         <div class="row">
           <div class="input-field col s12 col m6">
             <i class="material-icons prefix">business</i>
