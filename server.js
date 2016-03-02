@@ -209,16 +209,20 @@ app.post('/addRes', function(req, res){
   });
 });
 
-app.post('/review', function(req, res){
-  debugger;
+app.post('/review/:restaurantId', function(req, res){
   //if user is authenticated they can review
-  console.log(req.params);
-  // Review.create(req.body).then(function(result){
-  //   res.redirect('/listings');
-  // }).catch(function(err) {
-  //   console.log(err);
-  //   res.render("restList", {msg: err.errors[0].message});
-  // });
+  Review.create({
+    revTitle: req.body.revTitle,
+    dineDate: req.body.dineDate,
+    review: req.body.review,
+    // userId: req.params.userId,
+    restaurantId: req.params.restaurantId
+  }).then(function(result){
+    res.redirect('/listings');
+  }).catch(function(err) {
+    console.log(err);
+    res.render("restList", {msg: err.errors[0].message});
+  });
 });
 
 
