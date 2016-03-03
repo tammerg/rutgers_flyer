@@ -1,3 +1,4 @@
+<div class="teal" style="position:fixed;left:0px; top:0px"> <i class="material-icons">recent_actors</i>{{ user.id }}, {{ user.username }}</div>
 <div class="section no-pad-bot" id="listing-banner">
   <div class="listTrans">
     <div class="container">
@@ -16,6 +17,24 @@
 <!-- Make this sortable -->
 <div class="container">
   <div class="row">
+    <form class="col s12" method="GET" action="/sort">
+      <div class="row">
+        <div class="input-field col s12 m8">
+          <select name="searchList">
+            {{#each restaurant}}
+              <option value={{id}}>{{cuisine}} </option>
+            {{/each}}
+          </select>
+          <label>What Are You In The Mood For?</label>
+          <button type="submit" class="waves-effect waves-light btn-large">Search</button>
+        </div>
+      </div>
+      <div>
+
+      </div>
+    </form>
+  </div>
+  <div class="row">
     {{#each restaurant}}
     <div class="col s12">
       <h3>{{restName}}</h3>
@@ -33,9 +52,10 @@
           </div>
         </div>
       {{/each}}
-      <!-- review form here -->
       <!-- added ../ to keep if from checking if restaurant was authenticated instead of user -->
       {{#if ../isAuthenticated}}
+        <!-- need to link review to user -->
+        <!-- id and user are emails (both strings) -->
         <form method="POST" action="/review/{{id}}" class="col s12">
           <h3>Leave a review</h3>
           <!-- Need a rating system -->

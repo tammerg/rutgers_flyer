@@ -238,6 +238,8 @@ app.get('/', function(req, res) {
 });
 
 app.get("/listings", function(req, res){
+    console.log(req.user);
+
   Restaurant.findAll({
     include: [{
       model: Review
