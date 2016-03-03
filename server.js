@@ -253,6 +253,18 @@ app.get("/listings", function(req, res){
   });
 });
 
+app.post("/sort", function(req, res){
+  Restaurant.findAll({
+    where: {
+      cuisine:req.body.searchList
+    }
+  }).then(function(restaurant){
+    res.render("restList", {
+      restaurant: restaurant
+    });
+  });
+});
+
 app.get("/test", function(req, res){
   res.render('test',{
     user:req.user,

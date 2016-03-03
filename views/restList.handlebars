@@ -1,4 +1,6 @@
-<div class="teal" style="position:fixed;left:0px; top:0px"> <i class="material-icons">recent_actors</i>{{ user.id }}, {{ user.username }}</div>
+<!-- Test to see if I can get an integer id -->
+<!-- <div class="teal" style="position:fixed;left:0px; top:0px">  <i class="material-icons">recent_actors</i>{{ user.id }}, {{ user.username }}
+</div> -->
 <div class="section no-pad-bot" id="listing-banner">
   <div class="listTrans">
     <div class="container">
@@ -17,12 +19,13 @@
 <!-- Make this sortable -->
 <div class="container">
   <div class="row">
-    <form class="col s12" method="GET" action="/sort">
+    <form class="col s12" method="POST" action="/sort">
       <div class="row">
         <div class="input-field col s12 m8">
           <select name="searchList">
+            <option value="0">Choose a type of food</option>
             {{#each restaurant}}
-              <option value={{id}}>{{cuisine}} </option>
+              <option name="{{cuisine}}" value="{{cuisine}}">{{cuisine}}</option>
             {{/each}}
           </select>
           <label>What Are You In The Mood For?</label>
