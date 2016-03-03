@@ -181,8 +181,8 @@ var Review = connection.define('review', {
   }
 });
 
-User.hasMany(Review)
-Restaurant.hasMany(Review)
+User.hasMany(Review);
+Restaurant.hasMany(Review);
 
 //Account creation via sequelize
 app.post('/create', function(req, res){
