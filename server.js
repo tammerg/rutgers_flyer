@@ -253,6 +253,7 @@ app.get("/listings", function(req, res){
   });
 });
 
+// Add a new view for search results
 app.post("/sort", function(req, res){
   Restaurant.findAll({
     where: {
