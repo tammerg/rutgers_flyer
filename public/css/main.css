@@ -13,8 +13,10 @@
 .restInfo{
   background-color: #E51937;
 }
-.trans {
-  background-color: rgba(0, 0, 0, .35);
+footer{
+  position:fixed;
+  bottom: 0;
+  width: 100%;
 }
 .rutRPic{
   height: 50px;
