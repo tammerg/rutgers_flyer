@@ -252,6 +252,13 @@ app.post("/sort", function(req, res){
   }
 });
 
+app.post("/update", function(req, res){
+  console.log("Update this?");
+});
+
+app.post("/remove", function(req, res){
+  console.log("Delete this?");
+});
 
 
 
