@@ -312,12 +312,11 @@ app.get('/userRevs', function(req, res){
       model: Review
     }]
   }).then(function(results){
-    console.log(results);
     console.log(results.dataValues.reviews);
     res.render("reviews", {
       user:req.user,
-      isAuthenticated: req.isAuthenticated()
-      // results:results.dataValues
+      isAuthenticated: req.isAuthenticated(),
+      results:results
     });
   }).catch(function(err) {
     console.log(err);
