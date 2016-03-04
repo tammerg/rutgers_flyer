@@ -302,30 +302,27 @@ app.get('/restinfo', function(req, res){
   });
 });
 
-// app.get('/sort', function(req, res){
-//   res.render('sort', {
-//     user:req.user,
-//     isAuthenticated: req.isAuthenticated(),
-//        restaurant:restaurant
-//   });
-// });
-
 app.get('/userRevs', function(req, res){
   debugger;
   User.findAll({
     include: [{
       model: Review
     }]
-  }).then(function(restaurant){
-    console.log("found");
-    res.render("reviews");
+  }).then(function(results){
+    console.log(results);
+    res.render("reviews", {
+      user:req.user,
+      isAuthenticated: req.isAuthenticated()
+      // results:results.dataValues
+    });
+    console.log(results);
+  }).catch(function(err) {
+    console.log(err);
+    res.render("restList", {msg: err.errors[0].message});
   });
 });
 
-// {
-//       user:req.user,
-//       isAuthenticated: req.isAuthenticated()
-//     }
+
 
 
 
