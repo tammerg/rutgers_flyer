@@ -51,9 +51,9 @@ passport.use(new passportLocal.Strategy(function(username, password, done) {
     }).then(function(user) {
         //check password against hash
         if(user){
+          console.log(user.dataValues)
             bcrypt.compare(password, user.dataValues.password, function(err, user) {
                 if (user) {
-                  console.log(user.dataValues.id)
                   //if password is correct authenticate the user with cookie
                    done(null, { id: username, username: username });
                 } else{
@@ -226,6 +226,27 @@ app.post('/review/:restaurantId', function(req, res){
   });
 });
 
+// Add a new view for search results
+app.post("/sort", function(req, res){
+  if(req.body.searchList  === "0"){
+    res.redirect('/listings?msg=Please choose a cuisine');
+  } else {
+      Restaurant.findAll({
+      where: {
+        cuisine:req.body.searchList
+      },
+      include: [{
+        model: Review
+      }]
+    }).then(function(restaurant){
+      res.render("sort", {
+        restaurant: restaurant
+      });
+    });
+  }
+});
+
+
 
 
 /************* SEQUELIZE CODE END *************/
@@ -255,22 +276,6 @@ app.get("/listings", function(req, res){
     res.render("restList", {
       user:req.user,
       isAuthenticated: req.isAuthenticated(),
-      restaurant: restaurant
-    });
-  });
-});
-
-// Add a new view for search results
-app.post("/sort", function(req, res){
-  Restaurant.findAll({
-    where: {
-      cuisine:req.body.searchList
-    },
-    include: [{
-      model: Review
-    }]
-  }).then(function(restaurant){
-    res.render("sort", {
       restaurant: restaurant
     });
   });
