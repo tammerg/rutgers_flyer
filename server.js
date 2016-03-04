@@ -247,8 +247,6 @@ app.get('/loggedin', function(req, res){
   });
 });
 app.get("/listings", function(req, res){
-    console.log(req.user);
-
   Restaurant.findAll({
     include: [{
       model: Review
@@ -267,9 +265,12 @@ app.post("/sort", function(req, res){
   Restaurant.findAll({
     where: {
       cuisine:req.body.searchList
-    }
+    },
+    include: [{
+      model: Review
+    }]
   }).then(function(restaurant){
-    res.render("restList", {
+    res.render("sort", {
       restaurant: restaurant
     });
   });
