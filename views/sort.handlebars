@@ -1,42 +1,20 @@
-<!-- Test to see if I can get an integer id -->
-<div class="teal" style="position:fixed;left:0px; top:100px">  <i class="material-icons">recent_actors</i>{{ user.thisId }}, {{ user.username }}
-</div>
-<div class="section no-pad-bot" id="listing-banner">
+<div class="section no-pad-bot" id="listing-banner-sort">
   <div class="listTrans">
     <div class="container">
       <br><br>
       <h1 class="header center orange-text">Restaurant Listings</h1>
       <div class="row center">
-        <h5 class="header col s12 light white-text">Here are some different restaurants around campus</h5>
+        <h3 class="header col s12 orange-text">Search Results</h3>
       </div>
     </div>
   </div>
 </div>
-
 <div class="message container center red">
   {{ msg }}
 </div>
+
 <!-- Make this sortable -->
 <div class="container">
-  <div class="row">
-    <form class="col s12" method="POST" action="/sort">
-      <div class="row">
-        <div class="input-field col s12 m8">
-          <select name="searchList">
-            <option value="0">Choose a type of food</option>
-            {{#each restaurant}}
-              <option name="{{cuisine}}" value="{{cuisine}}">{{cuisine}}</option>
-            {{/each}}
-          </select>
-          <label>What Are You In The Mood For?</label>
-          <button type="submit" class="waves-effect waves-light btn-large">Search</button>
-        </div>
-      </div>
-      <div>
-
-      </div>
-    </form>
-  </div>
   <div class="row">
     {{#each restaurant}}
     <div class="col s12">
@@ -59,7 +37,7 @@
       {{#if ../isAuthenticated}}
         <!-- need to link review to user -->
         <!-- id and user are emails (both strings) -->
-        <form method="POST" action="/review/{{id}}/{{../user.thisId}}" class="col s12">
+        <form method="POST" action="/review/{{id}}" class="col s12">
           <h3>Leave a review</h3>
           <!-- Need a rating system -->
           <div class="row">
