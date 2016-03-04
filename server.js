@@ -188,7 +188,7 @@ Restaurant.hasMany(Review);
 //Account creation via sequelize
 app.post('/create', function(req, res){
     User.create(req.body).then(function(result){
-      res.redirect('/?msg=Account Created Please LogIn');
+      res.redirect('/registered?msg=Successfully created account please login');
     }).catch(function(err) {
       console.log(err);
       res.redirect('/?msg='+ "E-mail " + err.errors[0].message);
@@ -197,7 +197,7 @@ app.post('/create', function(req, res){
 
 
 app.post('/', passport.authenticate('local', {
-    successRedirect: '/listings',
+    successRedirect: '/loggedin',
     failureRedirect: '/?msg=Invalid Credentials'
 }));
 
@@ -237,7 +237,15 @@ app.post('/review/:restaurantId', function(req, res){
 app.get('/', function(req, res) {
   res.render('index', {msg: req.query.msg});
 });
-
+app.get('/registered', function(req, res){
+  res.render('index1', {msg: req.query.msg});
+});
+app.get('/loggedin', function(req, res){
+  res.render('index2', {
+    user:req.user,
+    isAuthenticated: req.isAuthenticated()
+  });
+});
 app.get("/listings", function(req, res){
     console.log(req.user);
 
@@ -268,7 +276,7 @@ app.post("/sort", function(req, res){
 });
 
 app.get("/test", function(req, res){
-  res.render('test',{
+  res.render('test', {
     user:req.user,
     isAuthenticated: req.isAuthenticated()
   });
