@@ -303,7 +303,6 @@ app.get('/restinfo', function(req, res){
 });
 
 app.get('/userRevs', function(req, res){
-  debugger;
   User.findOne({
         where: {
             username:req.user.username,
@@ -312,7 +311,11 @@ app.get('/userRevs', function(req, res){
       model: Review
     }]
   }).then(function(results){
+    debugger;
+    console.log(results.dataValues);
     console.log(results.dataValues.reviews);
+    console.log(results.dataValues.reviews[0].dataValues);
+    console.log(results.dataValues.reviews[0].dataValues.review);
     res.render("reviews", {
       user:req.user,
       isAuthenticated: req.isAuthenticated(),
@@ -323,24 +326,6 @@ app.get('/userRevs', function(req, res){
     res.render("restList", {msg: err.errors[0].message});
   });
 });
-
-// User.findAll({
-//     include: [{
-//       model: Review
-//     }]
-//   }).then(function(results){
-//     console.log(results[0].dataValues);
-//     console.log(results[0].dataValues.reviews);
-//     res.render("reviews", {
-//       user:req.user,
-//       isAuthenticated: req.isAuthenticated()
-//       // results:results.dataValues
-//     });
-//   }).catch(function(err) {
-//     console.log(err);
-//     res.render("restList", {msg: err.errors[0].message});
-//   });
-
 
 
 
