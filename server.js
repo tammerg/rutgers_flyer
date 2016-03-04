@@ -240,7 +240,9 @@ app.post("/sort", function(req, res){
       }]
     }).then(function(restaurant){
       res.render("sort", {
-        restaurant: restaurant
+        restaurant: restaurant,
+        user:req.user,
+        isAuthenticated: req.isAuthenticated()
       });
     });
   }
