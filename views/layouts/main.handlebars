@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet"> -->
     <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="/css/main.css">
   </head>
   <body>
@@ -18,6 +19,9 @@
           <ul class="right hide-on-med-and-down">
             <li><a href="/listings">Restaurants</a></li>
             <li><a href="/restinfo">More Info</a></li>
+            {{#if isAuthenticated}}
+              <li><a href="/userRevs">My Reviews</a></li>
+            {{/if}}
           </ul>
         </div>
       </nav>

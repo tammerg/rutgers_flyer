@@ -16,6 +16,7 @@
 <!-- Make this sortable -->
 <div class="container">
   <div class="row">
+    <p><a href="/listings"><i class="fa fa-angle-double-left"></i> Back to Restaurant Listings</a></p>
     {{#each restaurant}}
     <div class="col s12">
       <h3>{{restName}}</h3>
@@ -37,7 +38,7 @@
       {{#if ../isAuthenticated}}
         <!-- need to link review to user -->
         <!-- id and user are emails (both strings) -->
-        <form method="POST" action="/review/{{id}}" class="col s12">
+        <form method="POST" action="/review/{{id}}/{{../user.thisId}}" class="col s12">
           <h3>Leave a review</h3>
           <!-- Need a rating system -->
           <div class="row">
