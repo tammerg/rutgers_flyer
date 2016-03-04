@@ -1,5 +1,5 @@
 <!-- Test to see if I can get an integer id -->
-<div class="teal" style="position:fixed;left:0px; top:100px">  <i class="material-icons">recent_actors</i>{{ ../id }}, {{ ../username }}
+<div class="teal" style="position:fixed;left:0px; top:100px">  <i class="material-icons">recent_actors</i>{{ user.thisId }}, {{ user.username }}
 </div>
 <div class="section no-pad-bot" id="listing-banner">
   <div class="listTrans">
@@ -59,7 +59,7 @@
       {{#if ../isAuthenticated}}
         <!-- need to link review to user -->
         <!-- id and user are emails (both strings) -->
-        <form method="POST" action="/review/{{id}}" class="col s12">
+        <form method="POST" action="/review/{{id}}/{{../user.thisId}}" class="col s12">
           <h3>Leave a review</h3>
           <!-- Need a rating system -->
           <div class="row">

@@ -51,11 +51,11 @@ passport.use(new passportLocal.Strategy(function(username, password, done) {
     }).then(function(user) {
         //check password against hash
         if(user){
-          console.log(user.dataValues)
+          var thisId = user.dataValues.id
             bcrypt.compare(password, user.dataValues.password, function(err, user) {
                 if (user) {
                   //if password is correct authenticate the user with cookie
-                   done(null, { id: username, username: username });
+                   done(null, { thisId, username: username });
                 } else{
                   done(null, null);
                 }
@@ -67,10 +67,10 @@ passport.use(new passportLocal.Strategy(function(username, password, done) {
 }));
 //change the object used to authenticate to a smaller token, and protects the server from attacks.
 passport.serializeUser(function(user, done) {
-  done(null, user.id);
+  done(null, user);
 });
-passport.deserializeUser(function(id, done){
-  done(null, {id: id, username: id});
+passport.deserializeUser(function(user, done){
+  done(null, user);
 });
 /************* PASSPORT CODE END*************/
 
@@ -210,7 +210,7 @@ app.post('/addRes', function(req, res){
   });
 });
 
-app.post('/review/:restaurantId', function(req, res){
+app.post('/review/:restaurantId/:userId', function(req, res){
   //if user is authenticated they can review
   Review.create({
     revTitle: req.body.revTitle,
@@ -293,6 +293,22 @@ app.get('/restinfo', function(req, res){
     user:req.user,
     isAuthenticated: req.isAuthenticated()
   });
+});
+
+app.get('/userRevs', function(req, res){
+  User.findOne({
+      where: {
+        username:username
+      },
+      include: [{
+        model: Review
+      }]
+    }).then(function(restaurant){
+      res.render("reviews", {
+        user:req.user,
+        isAuthenticated: req.isAuthenticated()
+      });
+    });
 });
 
 
