@@ -1,10 +1,4 @@
-<div class="col s12 m4">
-  <h5>{{results.dataValues.username}}'s Reviews:</h5>
-  <h5>{{results.dataValues.reviews}}'s Reviews:</h5>
-
-  <div class="row">
-    {{#each results}}
-      {{#each reviews}}
+{{#each reviews}}
         <div class="col s6 m4">
           <div class="card-panel light-blue lighten-1 white-text">
             <h5>{{revTitle}}</h5>
@@ -16,6 +10,28 @@
         </form>
         <form method="POST" action="/remove?_method=DELETE">
           <input type="hidden" type="text" name="burger_id" value={{this.id}}>
+          <button type="submit" class="btn">Delete Review</button>
+        </form></div>
+        </div>
+      {{/each}}
+<div class="col s12 m4">
+  <h5>{{results.dataValues.username}}'s Reviews:</h5>
+  <h5>{{results.dataValues.reviews}}'s Reviews:</h5>
+
+  <div class="row">
+    {{#each results}}
+      {{#each reviews}}
+        <div class="col s6 m4">
+          <div class="card-panel red darken-1 white-text">
+            <h5>{{revTitle}}</h5>
+            <p>Dined on {{dineDate}}</p>
+            <p>"{{review}}"</p>
+          <form method="POST" action="/update?_method=PUT">
+          <input type="hidden" type="text" name="review_id" value={{this.id}}>
+          <button type="submit" class="btn">Update</button>
+        </form>
+        <form method="POST" action="/remove?_method=DELETE">
+          <input type="hidden" type="text" name="review_id" value={{this.id}}>
           <button type="submit" class="btn">Delete Review</button>
         </form></div>
         </div>
