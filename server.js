@@ -303,25 +303,29 @@ app.get('/restinfo', function(req, res){
 });
 
 app.get('/userRevs', function(req, res){
-  debugger;
-  User.findAll({
+  User.findOne({
+        where: {
+            username:req.user.username,
+        },
     include: [{
       model: Review
     }]
   }).then(function(results){
-    console.log(results);
+    debugger;
+    console.log(results.dataValues);
+    console.log(results.dataValues.reviews);
+    console.log(results.dataValues.reviews[0].dataValues);
+    console.log(results.dataValues.reviews[0].dataValues.review);
     res.render("reviews", {
       user:req.user,
-      isAuthenticated: req.isAuthenticated()
-      // results:results.dataValues
+      isAuthenticated: req.isAuthenticated(),
+      results:results
     });
-    console.log(results);
   }).catch(function(err) {
     console.log(err);
     res.render("restList", {msg: err.errors[0].message});
   });
 });
-
 
 
 
