@@ -2,6 +2,18 @@
   height: 100px;
   width: 100px;
 }
+.title{
+  color:white;
+}
+.trans {
+    background-color: rgba(0,0,0,.5);
+}
+.containerInfo{
+  background-image: url("/img/rutgersUniversity.jpg")
+}
+.descriptionInfo{
+  color: white;
+}
 .listTrans{
   background-color: rgba(0, 0, 0, .4);
 }
