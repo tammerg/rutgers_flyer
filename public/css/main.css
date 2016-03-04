@@ -16,6 +16,10 @@
 .trans {
   background-color: rgba(0, 0, 0, .35);
 }
+.rutRPic{
+  height: 50px;
+  width: 50px;
+}
 .rest-cuisine {
   font-style: italic;
 }
@@ -31,4 +35,7 @@ footer.page-footer.orange {
   text-align: center;
   height: 400px;
   width: 500px;
+}
+.light{
+  font-size: 18px;
 }
