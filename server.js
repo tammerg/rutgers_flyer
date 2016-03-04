@@ -53,8 +53,9 @@ passport.use(new passportLocal.Strategy(function(username, password, done) {
         if(user){
             bcrypt.compare(password, user.dataValues.password, function(err, user) {
                 if (user) {
+                  console.log(user.dataValues.id)
                   //if password is correct authenticate the user with cookie
-                  done(null, { id: id, username: username, lastName:lastName });
+                   done(null, { id: username, username: username });
                 } else{
                   done(null, null);
                 }
@@ -66,10 +67,10 @@ passport.use(new passportLocal.Strategy(function(username, password, done) {
 }));
 //change the object used to authenticate to a smaller token, and protects the server from attacks.
 passport.serializeUser(function(user, done) {
-  done(null, user.lastName);
+  done(null, user.id);
 });
 passport.deserializeUser(function(id, done){
-  done(null, {lastName: lastName, username: lastName});
+  done(null, {id: id, username: id});
 });
 /************* PASSPORT CODE END*************/
 
