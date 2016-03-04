@@ -187,7 +187,7 @@ Restaurant.hasMany(Review);
 //Account creation via sequelize
 app.post('/create', function(req, res){
     User.create(req.body).then(function(result){
-      res.redirect('/?msg=Account Created Please LogIn');
+      res.redirect('/registered?msg=Account created please log in');
     }).catch(function(err) {
       console.log(err);
       res.redirect('/?msg='+ "E-mail " + err.errors[0].message);
@@ -196,7 +196,7 @@ app.post('/create', function(req, res){
 
 
 app.post('/', passport.authenticate('local', {
-    successRedirect: '/listings',
+    successRedirect: '/loggedin',
     failureRedirect: '/?msg=Invalid Credentials'
 }));
 
@@ -236,7 +236,12 @@ app.post('/review/:restaurantId', function(req, res){
 app.get('/', function(req, res) {
   res.render('index', {msg: req.query.msg});
 });
-
+app.get('/registered', function(req, res){
+  res.render('index1');
+});
+app.get('/loggedin', function(req, res){
+  res.render('index2');
+});
 app.get("/listings", function(req, res){
   Restaurant.findAll({
     include: [{
@@ -250,7 +255,6 @@ app.get("/listings", function(req, res){
     });
   });
 });
-
 app.get("/test", function(req, res){
   res.render('test',{
     user:req.user,
