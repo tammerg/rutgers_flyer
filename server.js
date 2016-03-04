@@ -53,8 +53,9 @@ passport.use(new passportLocal.Strategy(function(username, password, done) {
         if(user){
             bcrypt.compare(password, user.dataValues.password, function(err, user) {
                 if (user) {
+                  console.log(user.dataValues.id)
                   //if password is correct authenticate the user with cookie
-                  done(null, { id: username, username: username });
+                   done(null, { id: username, username: username });
                 } else{
                   done(null, null);
                 }
@@ -246,6 +247,8 @@ app.get('/loggedin', function(req, res){
   });
 });
 app.get("/listings", function(req, res){
+    console.log(req.user);
+
   Restaurant.findAll({
     include: [{
       model: Review
@@ -258,6 +261,20 @@ app.get("/listings", function(req, res){
     });
   });
 });
+
+// Add a new view for search results
+app.post("/sort", function(req, res){
+  Restaurant.findAll({
+    where: {
+      cuisine:req.body.searchList
+    }
+  }).then(function(restaurant){
+    res.render("restList", {
+      restaurant: restaurant
+    });
+  });
+});
+
 app.get("/test", function(req, res){
   res.render('test', {
     user:req.user,

@@ -17,6 +17,9 @@
 .listTrans{
   background-color: rgba(0, 0, 0, .4);
 }
+.section.no-pad-bot{
+  padding-top: 0;
+}
 #listing-banner{
   background: url("/img/breakfast.jpg");
   background-size: cover;
