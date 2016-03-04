@@ -304,23 +304,43 @@ app.get('/restinfo', function(req, res){
 
 app.get('/userRevs', function(req, res){
   debugger;
-  User.findAll({
+  User.findOne({
+        where: {
+            username:req.user.username,
+        },
     include: [{
       model: Review
     }]
   }).then(function(results){
     console.log(results);
+    console.log(results.dataValues.reviews);
     res.render("reviews", {
       user:req.user,
       isAuthenticated: req.isAuthenticated()
       // results:results.dataValues
     });
-    console.log(results);
   }).catch(function(err) {
     console.log(err);
     res.render("restList", {msg: err.errors[0].message});
   });
 });
+
+// User.findAll({
+//     include: [{
+//       model: Review
+//     }]
+//   }).then(function(results){
+//     console.log(results[0].dataValues);
+//     console.log(results[0].dataValues.reviews);
+//     res.render("reviews", {
+//       user:req.user,
+//       isAuthenticated: req.isAuthenticated()
+//       // results:results.dataValues
+//     });
+//   }).catch(function(err) {
+//     console.log(err);
+//     res.render("restList", {msg: err.errors[0].message});
+//   });
 
 
 
