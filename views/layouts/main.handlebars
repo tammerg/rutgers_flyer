@@ -18,6 +18,9 @@
           <ul class="right hide-on-med-and-down">
             <li><a href="/listings">Restaurants</a></li>
             <li><a href="/restinfo">More Info</a></li>
+            {{#if isAuthenticated}}
+              <li><a href="/userRevs">My Reviews</a></li>
+            {{/if}}
           </ul>
         </div>
       </nav>

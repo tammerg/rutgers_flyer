@@ -227,6 +227,7 @@ app.post('/review/:restaurantId/:userId', function(req, res){
 });
 
 // Add a new view for search results
+//Searchlist posts to sort
 app.post("/sort", function(req, res){
   if(req.body.searchList  === "0"){
     res.redirect('/listings?msg=Please choose a cuisine');
@@ -242,9 +243,13 @@ app.post("/sort", function(req, res){
       res.render("sort", {
         restaurant: restaurant
       });
+    }).catch(function(err) {
+      console.log(err);
+      res.render("restList", {msg: err.errors[0].message});
     });
   }
 });
+
 
 
 
@@ -295,23 +300,30 @@ app.get('/restinfo', function(req, res){
   });
 });
 
+// app.get('/sort', function(req, res){
+//   res.render('sort', {
+//     user:req.user,
+//     isAuthenticated: req.isAuthenticated(),
+//        restaurant:restaurant
+//   });
+// });
+
 app.get('/userRevs', function(req, res){
-  User.findOne({
-      where: {
-        username:username
-      },
-      include: [{
-        model: Review
-      }]
-    }).then(function(restaurant){
-      res.render("reviews", {
-        user:req.user,
-        isAuthenticated: req.isAuthenticated()
-      });
-    });
+  debugger;
+  User.findAll({
+    include: [{
+      model: Review
+    }]
+  }).then(function(restaurant){
+    console.log("found");
+    res.render("restinfo");
+  });
 });
 
-
+// {
+//       user:req.user,
+//       isAuthenticated: req.isAuthenticated()
+//     }
 
 
 
