@@ -318,7 +318,7 @@ app.get('/userRevs', function(req, res){
     }]
   }).then(function(restaurant){
     console.log("found");
-    res.render("restinfo");
+    res.render("reviews");
   });
 });
 
