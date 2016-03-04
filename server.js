@@ -51,11 +51,13 @@ passport.use(new passportLocal.Strategy(function(username, password, done) {
     }).then(function(user) {
         //check password against hash
         if(user){
+          console.log("This is: " + user.dataValues.id);
+          var thisId = user.dataValues.id
             bcrypt.compare(password, user.dataValues.password, function(err, user) {
                 if (user) {
-                  console.log(user.dataValues.id)
+                  debugger;
                   //if password is correct authenticate the user with cookie
-                   done(null, { id: username, username: username });
+                   done(null, { thisId, username: username });
                 } else{
                   done(null, null);
                 }
@@ -67,10 +69,10 @@ passport.use(new passportLocal.Strategy(function(username, password, done) {
 }));
 //change the object used to authenticate to a smaller token, and protects the server from attacks.
 passport.serializeUser(function(user, done) {
-  done(null, user.id);
+  done(null, user);
 });
-passport.deserializeUser(function(id, done){
-  done(null, {id: id, username: id});
+passport.deserializeUser(function(user, done){
+  done(null, user);
 });
 /************* PASSPORT CODE END*************/
 
@@ -210,7 +212,7 @@ app.post('/addRes', function(req, res){
   });
 });
 
-app.post('/review/:restaurantId', function(req, res){
+app.post('/review/:restaurantId/:userId', function(req, res){
   //if user is authenticated they can review
   Review.create({
     revTitle: req.body.revTitle,
