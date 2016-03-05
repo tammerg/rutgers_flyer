@@ -253,11 +253,21 @@ app.post("/sort", function(req, res){
 });
 
 app.post("/update", function(req, res){
-  console.log("Update this?");
+  Review.update({
+    revTitle:req.body.revTitle,
+    dineDate:req.body.dineDate,
+    review:req.body.review
+  },{where: {
+    id:req.body.review_id,
+  }}).then(function(){
+    res.redirect("/userRevs");
+  }).catch(function(err) {
+    console.log(err);
+    res.render("reviews", {msg: err.errors[0].message});
+  });;
 });
 
 app.post("/remove", function(req, res){
-  debugger
   Review.findOne({
     where: {
       id:req.body.review_id,
