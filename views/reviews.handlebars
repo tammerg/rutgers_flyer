@@ -10,13 +10,13 @@
             <p>"{{review}}"</p>
           </div>
           <div class="col s12 m6">
-            <form method="POST" action="/update">?_method=PUT
+            <form method="POST" action="/update">
               <input type="hidden" type="text" name="review_id" value={{this.id}}>
               <button type="submit" class="btn">Update</button>
             </form>
           </div>
           <div class="col s12 m6">
-            <form method="POST" action="/remove">?_method=DELETE
+            <form method="POST" action="/remove">
               <input type="hidden" type="text" name="review_id" value={{this.id}}>
               <button type="submit" class="btn">Delete Review</button>
             </form>
