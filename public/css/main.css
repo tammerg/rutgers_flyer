@@ -2,14 +2,22 @@
   height: 100px;
   width: 100px;
 }
+.authors{
+  right: 0;
+}
 .title{
   color:white;
+}
+.fixed{
+  position: fixed;
 }
 .trans {
     background-color: rgba(0,0,0,.5);
 }
 .containerInfo{
-  background-image: url("/img/rutgersUniversity.jpg")
+  background-image: url("/img/rutgersUniversity.jpg");
+  height:auto;
+  width:auto;
 }
 .descriptionInfo{
   color: white;
@@ -40,8 +48,9 @@ footer{
 .rest-cuisine {
   font-style: italic;
 }
-footer.page-footer.orange {
+footer.page-footer{
   margin-top: 0;
+}
 }
 .googleMap{
   margin-left: auto;

@@ -1,93 +1,93 @@
-<div class="parallax-container">
-  <div class="parallax"><img src="https://rudebate.files.wordpress.com/2009/10/old_queens.jpg" alt="food">
+
+{{!-- The main body section with modal and parallax code --}}
+<div class="container-fluid RFReview parallax- trans">
+  <h1 class="header center teal-text text-lighten-2">Rutgers Food Review</h1>
+  <div class="row center">
+    <h5 class="header col s12 teal-text darken-2">RATE YOUR FAVORITE SPOTS TO EAT FOOD ON CAMPUS</h5>
+  </div>
+  <div class="row center">
+    <a href="#modal1" class="modal-trigger waves-efect waves-light btn-large red accent-2">Login</a>
+    <a href="#modal2" class="modal-trigger waves-effect waves-light btn-large red accent-2">Register</a>
+  </div>
+  <h5 class="container center red"> {{ msg }}</h5>
+    <div class="parallax"><img src="https://rudebate.files.wordpress.com/2009/10/old_queens.jpg" alt="food">
+    </div>
   </div>
 </div>
-{{!-- The main body section with modal and parallax code --}}
-  <div class="container">
-    <h1 class="header center teal-text text-lighten-2">Rutgers Food Review</h1>
-    <div class="row center">
-      <h5 class="header col s12 orange-text">RATE YOUR FAVORITE SPOTS TO EAT FOOD ON CAMPUS</h5>
+<!-- Login Modal Structure Body -->
+<div class="modal modal-fixed-footer" id="modal1">
+  <div class="modal-content">
+    <h4>Login!</h4>
+    <p>Please enter your credentials</p>
+    <div class="row">
+      <form action="/" class="col s12" method="post">
+        <div class="row">
+          <div class="input-field col s12">
+            <i class="material-icons prefix">email</i>
+            <input class="validate" id="email" name="username" type="email"> <label for="email">Email</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <i class="material-icons prefix">lock</i>
+            <input class="validate" id="password" name="password" type="password"> <label for="password">Password</label>
+          </div>
+        </div>
     </div>
-    <div class="row center">
-      <a href="#modal1" class="modal-trigger waves-efect waves-light btn-large">Login</a>
-      <a href="#modal2" class="modal-trigger waves-effect waves-light btn-large">Register</a>
-    </div>
-    <h5 class="container center red"> {{ msg }}</h5>
+    <p>Thanks!</p>
   </div>
-  <!-- Login Modal Structure Body -->
-  <div class="modal modal-fixed-footer" id="modal1">
-    <div class="modal-content">
-      <h4>Login!</h4>
-      <p>Please enter your credentials</p>
-      <div class="row">
-        <form action="/" class="col s12" method="post">
-          <div class="row">
-            <div class="input-field col s12">
-              <i class="material-icons prefix">email</i>
-              <input class="validate" id="email" name="username" type="email"> <label for="email">Email</label>
-            </div>
-          </div>
-          <div class="row">
-            <div class="input-field col s12">
-              <i class="material-icons prefix">lock</i>
-              <input class="validate" id="password" name="password" type="password"> <label for="password">Password</label>
-            </div>
-          </div>
-      </div>
-      <p>Thanks!</p>
-    </div>
 <!-- Login Modal Structure footer -->
-    <div class="modal-footer">
-      <a class="modal-action modal-close waves-effect waves-green btn-flat" href="#!">close</a>
-      <button class="btn waves-effect waves-light col s3" type="submit" name="action">Submit
-           <i class="material-icons right">send</i>
-      </button>
-      <p>MORE TEXT HERE</p>
-    </div>
-    </form>
+  <div class="modal-footer">
+    <a class="modal-action modal-close waves-effect waves-green btn-flat" href="#!">close</a>
+    <button class="btn waves-effect waves-light col s3" type="submit" name="action">Submit
+         <i class="material-icons right">send</i>
+    </button>
+    <p>MORE TEXT HERE</p>
   </div>
+  </form>
+</div>
 <!-- Login Modal Structure End -->
 
 
 <!-- Register Modal Structure Body -->
-  <div class="modal modal-fixed-footer" id="modal2">
-    <div class="modal-content">
-      <h4>Register!</h4>
-      <p>Register for an account</p>
-      <div class="row">
-        <form action="/create" class="col s12" method="post">
-          <div class="row">
-            <div class="input-field col s6">
-              <i class="material-icons prefix">account_circle</i> <input class="validate" id="first_name" name="first_name" type="text"> <label for="first_name">First Name</label>
-            </div>
-            <div class="input-field col s6">
-              <input class="validate" id="last_name" name="lastName" type="text"> <label for="last_name">Last Name</label>
-            </div>
+<div class="modal modal-fixed-footer" id="modal2">
+  <div class="modal-content">
+    <h4>Register!</h4>
+    <p>Register for an account</p>
+    <div class="row">
+      <form action="/create" class="col s12" method="post">
+        <div class="row">
+          <div class="input-field col s6">
+            <i class="material-icons prefix">account_circle</i> <input class="validate" id="first_name" name="first_name" type="text"> <label for="first_name">First Name</label>
           </div>
-          <div class="row">
-            <div class="input-field col s12">
-              <i class="material-icons prefix">email</i>
-              <input class="validate" id="email" name="username" type="email"> <label for="email">Email</label>
-            </div>
+          <div class="input-field col s6">
+            <input class="validate" id="last_name" name="lastName" type="text"> <label for="last_name">Last Name</label>
           </div>
-          <div class="row">
-            <div class="input-field col s12">
-              <i class="material-icons prefix">lock</i>
-              <input class="validate" id="password" name="password" type="password"> <label for="password">Password</label>
-            </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <i class="material-icons prefix">email</i>
+            <input class="validate" id="email" name="username" type="email"> <label for="email">Email</label>
           </div>
-      </div>
-      <p>text goes in here</p>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <i class="material-icons prefix">lock</i>
+            <input class="validate" id="password" name="password" type="password"> <label for="password">Password</label>
+          </div>
+        </div>
     </div>
-<!-- Register Modal Structure footer -->
-    <div class="modal-footer">
-      <a class="modal-action modal-close waves-effect waves-green btn-flat" href="#!">Close</a>
-      <button class="btn waves-effect waves-light col s3" type="submit" name="action">Submit
-           <i class="material-icons right">send</i>
-      </button>
-      <p> text </p>
-    </div>
-     </form>
+    <p>text goes in here</p>
   </div>
+<!-- Register Modal Structure footer -->
+  <div class="modal-footer">
+    <a class="modal-action modal-close waves-effect waves-green btn-flat" href="#!">Close</a>
+    <button class="btn waves-effect waves-light col s3" type="submit" name="action">Submit
+         <i class="material-icons right">send</i>
+    </button>
+    <p> text </p>
+  </div>
+   </form>
+</div>
 
-  <!-- Register Modal Structure End -->
+<!-- Register Modal Structure End -->
