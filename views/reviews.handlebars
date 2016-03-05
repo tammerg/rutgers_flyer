@@ -1,3 +1,6 @@
+<div class="message container center red">
+  {{ msg }}
+</div>
 <div class="col s12 m4">
   <h5>{{results.dataValues.username}}'s Reviews:</h5>
   <div class="row">
@@ -9,8 +12,24 @@
             <p>Dined on {{dineDate}}</p>
             <p>"{{review}}"</p>
           </div>
-          <div class="col s12 m4">
+          <div class="col s12">
             <form method="POST" action="/update">
+              <div class="row">
+                <div class="input-field col s12 col m6">
+                  <input class="validate" id="revTitle" name="revTitle" type="text">
+                  <label for="revTitle">Review Title</label>
+                </div>
+
+                <div class="input-field col s12 col m6">
+                  <input type="date" class="datepicker" id="date" name="dineDate">
+                  <label for="cuisine">Dine Date</label>
+                </div>
+                <div class="input-field col s12">
+
+                  <textarea id="review" class="materialize-textarea validate" name="review" length="255"></textarea>
+                  <label for="review">Review</label>
+                </div>
+              </div>
               <input type="hidden" type="text" name="review_id" value={{this.id}}>
               <button type="submit" class="btn">Update</button>
             </form>
