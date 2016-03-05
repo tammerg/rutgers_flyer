@@ -1,17 +1,25 @@
 <div class="col s12 m4">
   <h5>{{results.dataValues.username}}'s Reviews:</h5>
-  <h5>{{results.dataValues.reviews}}'s Reviews:</h5>
-
-
   <div class="row">
     {{#each results}}
-
-      {{#each review}}
+      {{#each reviews}}
         <div class="col s6 m4">
-          <div class="card-panel light-blue lighten-1 white-text">
+          <div class="card-panel red darken-1 white-text">
             <h5>{{revTitle}}</h5>
             <p>Dined on {{dineDate}}</p>
             <p>"{{review}}"</p>
+          </div>
+          <div class="col s12 m6">
+            <form method="POST" action="/update">
+              <input type="hidden" type="text" name="review_id" value={{this.id}}>
+              <button type="submit" class="btn">Update</button>
+            </form>
+          </div>
+          <div class="col s12 m6">
+            <form method="POST" action="/remove">
+              <input type="hidden" type="text" name="review_id" value={{this.id}}>
+              <button type="submit" class="btn">Delete Review</button>
+            </form>
           </div>
         </div>
       {{/each}}

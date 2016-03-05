@@ -252,6 +252,23 @@ app.post("/sort", function(req, res){
   }
 });
 
+app.post("/update", function(req, res){
+  console.log("Update this?");
+});
+
+app.post("/remove", function(req, res){
+  debugger
+  Review.findOne({
+    where: {
+      id:req.body.review_id,
+    }
+  }).then(function(thisReview){
+    console.log(thisReview);
+    thisReview.destroy().then(function(){
+      res.redirect("/userRevs");
+    })
+  });
+});
 
 
 
@@ -311,11 +328,10 @@ app.get('/userRevs', function(req, res){
       model: Review
     }]
   }).then(function(results){
-    debugger;
-    console.log(results.dataValues);
-    console.log(results.dataValues.reviews);
-    console.log(results.dataValues.reviews[0].dataValues);
-    console.log(results.dataValues.reviews[0].dataValues.review);
+    // console.log(results.dataValues);
+    // console.log(results.dataValues.reviews);
+    // console.log(results.dataValues.reviews[0].dataValues);
+    // console.log(results.dataValues.reviews[0].dataValues.review);
     res.render("reviews", {
       user:req.user,
       isAuthenticated: req.isAuthenticated(),
