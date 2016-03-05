@@ -1,0 +1,28 @@
+<div class="col s12 m4">
+  <h5>{{results.dataValues.username}}'s Reviews:</h5>
+  <h5>{{results.dataValues.reviews}}'s Reviews:</h5>
+
+
+  <div class="row">
+    {{#each results}}
+
+      {{#each review}}
+        <div class="col s6 m4">
+          <div class="card-panel light-blue lighten-1 white-text">
+            <h5>{{revTitle}}</h5>
+            <p>Dined on {{dineDate}}</p>
+            <p>"{{review}}"</p>
+          </div>
+        </div>
+      {{/each}}
+    {{/each}}
+  </div>
+
+<div class="col s12 m4">
+  <div class="icon-block">
+    <h2 class="center light-blue-text"><i class="material-icons">group</i></h2>
+    <h5 class="center title">Reviews to help with choices</h5>
+
+    <p class="light descriptionInfo">Users can leave reviews and comment on each others reviews. No need to take a chance on a restaurant you may not enjoy!</p>
+  </div>
+</div>

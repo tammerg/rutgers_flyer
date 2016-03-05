@@ -51,10 +51,11 @@ passport.use(new passportLocal.Strategy(function(username, password, done) {
     }).then(function(user) {
         //check password against hash
         if(user){
+          var thisId = user.dataValues.id
             bcrypt.compare(password, user.dataValues.password, function(err, user) {
                 if (user) {
                   //if password is correct authenticate the user with cookie
-                  done(null, { id: username, username: username });
+                   done(null, { thisId, username: username });
                 } else{
                   done(null, null);
                 }
@@ -66,10 +67,10 @@ passport.use(new passportLocal.Strategy(function(username, password, done) {
 }));
 //change the object used to authenticate to a smaller token, and protects the server from attacks.
 passport.serializeUser(function(user, done) {
-  done(null, user.id);
+  done(null, user);
 });
-passport.deserializeUser(function(id, done){
-  done(null, {id: id, username: id});
+passport.deserializeUser(function(user, done){
+  done(null, user);
 });
 /************* PASSPORT CODE END*************/
 
@@ -187,7 +188,7 @@ Restaurant.hasMany(Review);
 //Account creation via sequelize
 app.post('/create', function(req, res){
     User.create(req.body).then(function(result){
-      res.redirect('/registered?msg=Account created please log in');
+      res.redirect('/registered?msg=Successfully created account please login');
     }).catch(function(err) {
       console.log(err);
       res.redirect('/?msg='+ "E-mail " + err.errors[0].message);
@@ -209,7 +210,7 @@ app.post('/addRes', function(req, res){
   });
 });
 
-app.post('/review/:restaurantId', function(req, res){
+app.post('/review/:restaurantId/:userId', function(req, res){
   //if user is authenticated they can review
   Review.create({
     revTitle: req.body.revTitle,
@@ -225,6 +226,34 @@ app.post('/review/:restaurantId', function(req, res){
   });
 });
 
+// Add a new view for search results
+//Searchlist posts to sort
+app.post("/sort", function(req, res){
+  if(req.body.searchList  === "0"){
+    res.redirect('/listings?msg=Please choose a cuisine');
+  } else {
+      Restaurant.findAll({
+      where: {
+        cuisine:req.body.searchList
+      },
+      include: [{
+        model: Review
+      }]
+    }).then(function(restaurant){
+      res.render("sort", {
+        restaurant: restaurant,
+        user:req.user,
+        isAuthenticated: req.isAuthenticated()
+      });
+    }).catch(function(err) {
+      console.log(err);
+      res.render("restList", {msg: err.errors[0].message});
+    });
+  }
+});
+
+
+
 
 
 /************* SEQUELIZE CODE END *************/
@@ -237,10 +266,13 @@ app.get('/', function(req, res) {
   res.render('index', {msg: req.query.msg});
 });
 app.get('/registered', function(req, res){
-  res.render('index1');
+  res.render('index1', {msg: req.query.msg});
 });
 app.get('/loggedin', function(req, res){
-  res.render('index2');
+  res.render('index2', {
+    user:req.user,
+    isAuthenticated: req.isAuthenticated()
+  });
 });
 app.get("/listings", function(req, res){
   Restaurant.findAll({
@@ -255,8 +287,9 @@ app.get("/listings", function(req, res){
     });
   });
 });
+
 app.get("/test", function(req, res){
-  res.render('test',{
+  res.render('test', {
     user:req.user,
     isAuthenticated: req.isAuthenticated()
   });
@@ -269,6 +302,30 @@ app.get('/restinfo', function(req, res){
   });
 });
 
+app.get('/userRevs', function(req, res){
+  User.findOne({
+        where: {
+            username:req.user.username,
+        },
+    include: [{
+      model: Review
+    }]
+  }).then(function(results){
+    debugger;
+    console.log(results.dataValues);
+    console.log(results.dataValues.reviews);
+    console.log(results.dataValues.reviews[0].dataValues);
+    console.log(results.dataValues.reviews[0].dataValues.review);
+    res.render("reviews", {
+      user:req.user,
+      isAuthenticated: req.isAuthenticated(),
+      results:results
+    });
+  }).catch(function(err) {
+    console.log(err);
+    res.render("restList", {msg: err.errors[0].message});
+  });
+});
 
 
 
