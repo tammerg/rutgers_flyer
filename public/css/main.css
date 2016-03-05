@@ -33,9 +33,6 @@
   background-size: cover;
   background-position: 75% 42%;
 }
-.restInfo{
-  background-color: #E51937;
-}
 footer{
   position:fixed;
   bottom: 0;
@@ -58,9 +55,8 @@ footer.page-footer{
 }
 
 #map{
-  text-align: center;
   height: 400px;
-  width: 500px;
+  width: 100%;
 }
 .light{
   font-size: 18px;
