@@ -1,6 +1,7 @@
 $(document).ready(function(){
   $('.parallax').parallax();
   $('.modal-trigger').leanModal();
+  $('.button-collapse').sideNav();
   $('.datepicker').pickadate();
   $('select').material_select();
 });
