@@ -44,3 +44,16 @@
       {{/each}}
     {{/each}}
   </div>
+
+  <h5 class="center teal container">Add your favorite food pictures here.</h5>
+ <br>
+    <div class="center container ">
+     <input type="filepicker" id="mySelect" data-fp-apikey="AbwDZpo3gTOyH18Lb4FHFz" data-fp-mimetypes="image/*" data-fp-services="WEBCAM, CONVERT, COMPUTER, FACEBOOK, INSTAGRAM, GMAIL" conversions="crop, rotate, filter" data-fp-container="modal" onchange="createImage(event.fpfile.url)">
+    </div>
+
+    <div class="row container">
+      <ul>
+        <li> <div class="container col s12" id="results"></div></li>
+      </ul>
+    </div>
+
