@@ -1,52 +1,46 @@
+<div class="message container center red">
+  {{ msg }}
+</div>
 <div class="col s12 m4">
-  <h5>{{results.dataValues.username}}'s Reviews:</h5>
+  <!-- <h5>{{results.dataValues.username}}'s Reviews:</h5> -->
   <div class="row">
     {{#each results}}
       {{#each reviews}}
-        <div class="col s6 m4">
-          <div class="card-panel red darken-1 white-text">
+        <div class="col s12 m4 offset-m1">
+          <div class="card-panel white-text">
             <h5>{{revTitle}}</h5>
             <p>Dined on {{dineDate}}</p>
             <p>"{{review}}"</p>
           </div>
-          <div class="col s12 m6">
+          <div class="col s12">
             <form method="POST" action="/update">
+              <div class="row">
+                <div class="input-field col s12 col m6">
+                  <input class="validate" id="revTitle" name="revTitle" type="text">
+                  <label for="revTitle">Review Title</label>
+                </div>
+
+                <div class="input-field col s12 col m6">
+                  <input type="date" class="datepicker" id="date" name="dineDate">
+                  <label for="cuisine">Dine Date</label>
+                </div>
+                <div class="input-field col s12">
+
+                  <textarea id="review" class="materialize-textarea validate" name="review" length="255"></textarea>
+                  <label for="review">Review</label>
+                </div>
+              </div>
               <input type="hidden" type="text" name="review_id" value={{this.id}}>
-              <button type="submit" class="btn">Update</button>
+              <button type="submit" class="btn">Update Review</button>
             </form>
           </div>
           <div class="col s12 m6">
             <form method="POST" action="/remove">
               <input type="hidden" type="text" name="review_id" value={{this.id}}>
-              <button type="submit" class="btn">Delete Review</button>
+              <button type="submit" class="btn space">Delete</button>
             </form>
           </div>
         </div>
       {{/each}}
     {{/each}}
   </div>
-
-
-<div class="col s12 m4">
-  <div class="icon-block">
-    <h2 class="center light-blue-text"><i class="material-icons">group</i></h2>
-    <h5 class="center title">Reviews to help with choices</h5>
-
-    <p class="light descriptionInfo">Users can leave reviews and comment on each others reviews. No need to take a chance on a restaurant you may not enjoy!</p>
-  </div>
-</div>
-
-<h5 class="center teal container">Add your favorite food pictures here.</h5>
-<br>
-   <div class="center container ">
-            <input type="filepicker" id="mySelect" data-fp-apikey="AbwDZpo3gTOyH18Lb4FHFz" data-fp-mimetypes="image/*" data-fp-services="WEBCAM, CONVERT, COMPUTER, FACEBOOK, INSTAGRAM, GMAIL" conversions="crop, rotate, filter" data-fp-container="modal" onchange="createImage(event.fpfile.url)">
-   </div>
-
-   <div class="row container">
-     <ul>
-       <li> <div class="container col s12" id="results"></div></li>
-       <li> <div class="container col s12" id="results"></div></li>
-       <li> <div class="container col s12" id="results"></div></li>
-     </ul>
-   </div>
-
