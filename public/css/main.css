@@ -34,7 +34,7 @@
   background-position: 75% 42%;
 }
 footer{
-  /*position:fixed;*/
+  position:fixed;
   bottom: 0;
   width: 100%;
 }
@@ -60,16 +60,4 @@ footer.page-footer{
 }
 .light{
   font-size: 18px;
-}
-.space {
-  margin-top: 8px;
-}
-.btn, .btn-large {
-  background-color: #545454
-}
-.btn:hover, .btn-large:hover {
-  background-color: #7F8E8C
-}
-.card-panel {
-  background-color: #CC0033
 }
