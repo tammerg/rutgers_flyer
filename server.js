@@ -253,7 +253,17 @@ app.post("/sort", function(req, res){
 });
 
 app.post("/update", function(req, res){
-  console.log("Update this?");
+  debugger
+  Review.findOne({
+    where: {
+      id:req.body.review_id,
+    }
+  }).then(function(thisReview){
+    console.log(thisReview);
+    // thisReview.destroy().then(function(){
+    //   res.redirect("/userRevs");
+    // })
+  });
 });
 
 app.post("/remove", function(req, res){
