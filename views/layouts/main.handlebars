@@ -13,21 +13,29 @@
   </head>
   <body>
 
-    <div class="navbar">
-      <nav>
-        <div class="nav-wrapper  red accent-2">
-          <a href="/" class="brand-logo"><img class="rutRPic" src="/img/rutgersR.png"></a>
-          <ul class="right hide-on-med-and-down">
-            <li><a href="/listings">Restaurants</a></li>
-            <li><a href="/restinfo">More Info</a></li>
-            {{#if isAuthenticated}}
-              <li><a href="/userRevs">My Reviews</a></li>
-            {{/if}}
-          </ul>
-        </div>
-      </nav>
-    </div>
+<nav class="red accent-2" role="navigation">
+    <div class="nav-wrapper  container ">
+      <a id="logo-container" href="/" class="brand-logo">
+        <img class="rutRPic" src="/img/rutgersR.png">
+      </a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="/listings">Restaurants</a></li>
+        <li><a href="/restinfo">More Info</a></li>
+        {{#if isAuthenticated}}
+        <li><a href="/userRevs">My Reviews</a></li>
+        {{/if}}
+      </ul>
 
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="/listings">Restaurants</a></li>
+        <li><a href="/restinfo">More Info</a></li>
+        {{#if isAuthenticated}}
+        <li><a href="/userRevs">My Reviews</a></li>
+        {{/if}}
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
 
     {{{ body }}}
 
