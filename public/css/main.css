@@ -65,12 +65,12 @@ footer.page-footer{
 .space {
   margin-top: 8px;
 }
-/*.btn, .btn-large {
+.btn, .btn-large {
   background-color: #545454
 }
 .btn:hover, .btn-large:hover {
   background-color: #7F8E8C
-}*/
+}
 .card-panel {
   background-color: #5A5353
 }
