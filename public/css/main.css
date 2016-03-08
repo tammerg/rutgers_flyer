@@ -5,6 +5,10 @@
 .authors{
   right: 0;
 }
+.idBox, .warnings {
+  background-color: white;
+  color:#FF5252;
+}
 .title{
   color:white;
 }
@@ -23,7 +27,7 @@
   color: white;
 }
 .listTrans{
-  background-color: rgba(0, 0, 0, .4);
+  background-color: rgba(0, 0, 0, .6);
 }
 .section.no-pad-bot{
   padding-top: 0;
