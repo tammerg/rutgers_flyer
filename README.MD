@@ -2,9 +2,9 @@
 Full-Stack Group Project: We are creating a fully functioning full-stack app that shows our Rutgers pride!
 
 ## General Project Summary:
-There's a lot to do / eat / see / play at Rutgers. We
-need an effective way to categorize it all!
-Our app will have a user registration / login system, and a way to add places for everyone to see. Only authenticated (i.e. logged in) users can leave reviews and ratings. There will be a basic filter that lets users narrow down their search (only 5 star places, restaurants, etc).
+*There are a ton of places to eat at Rutgers. We're making an app for students to talk up their favorites.
+
+*Our app will have a user registration / login system, and a way to add restaurants for everyone to see. Only authenticated (i.e. logged in) users can leave reviews and ratings. There will be a basic filter that lets users narrow down their search.
 
 ## Technologies Used
  - Html5
@@ -18,17 +18,18 @@ Our app will have a user registration / login system, and a way to add places fo
  - Express
  - Express-Handlebars
  - Express-Session
+ - Body-Parser
  - Sequelize
  - MySql
  - Bcryptjs
  - Passport
  - Passport-Local
+ - Lodash
+ - Dotenv
+
 
 ## Deployed Link
- - http://rufly.herokuapp.com/
-
-## API's Used
- -
+ - http://rufly2.herokuapp.com/
 
 ## Trello Link
  - https://trello.com/b/coSLX3Yo/rutgers-flyer
