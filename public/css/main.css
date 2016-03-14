@@ -37,6 +37,11 @@
   background-size: cover;
   background-position: 75% 42%;
 }
+#reviews-banner {
+  background: url("/img/restaurant.jpg");
+  background-size: cover;
+  background-position: 75% 50%;
+}
 footer{
   position:fixed;
   bottom: 0;
