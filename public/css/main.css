@@ -5,6 +5,10 @@
 .authors{
   right: 0;
 }
+.idBox, .warnings, .dropdown-content li>a, .dropdown-content li>span {
+  background-color: white;
+  color:#FF5252;
+}
 .title{
   color:white;
 }
@@ -23,7 +27,7 @@
   color: white;
 }
 .listTrans{
-  background-color: rgba(0, 0, 0, .4);
+  background-color: rgba(0, 0, 0, .6);
 }
 .section.no-pad-bot{
   padding-top: 0;
@@ -32,6 +36,11 @@
   background: url("/img/breakfast.jpg");
   background-size: cover;
   background-position: 75% 42%;
+}
+#reviews-banner {
+  background: url("/img/restaurant.jpg");
+  background-size: cover;
+  background-position: 75% 50%;
 }
 footer{
   position:fixed;
@@ -65,12 +74,12 @@ footer.page-footer{
 .space {
   margin-top: 8px;
 }
-/*.btn, .btn-large {
+.btn, .btn-large {
   background-color: #545454
 }
 .btn:hover, .btn-large:hover {
   background-color: #7F8E8C
-}*/
+}
 .card-panel {
   background-color: #5A5353
 }

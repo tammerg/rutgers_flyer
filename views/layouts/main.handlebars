@@ -52,7 +52,7 @@
             <h5 class="white-text">Authors</h5>
             <ul>
               <li><a class="white-text" href="https://stephs-portfolio.herokuapp.com ">Steph Harris</a></li>
-              <li><a class="white-text" href="www.victorvillacis.com">Victor Villacis</a></li>
+              <li><a class="white-text" href="https://www.victorvillacis.com">Victor Villacis</a></li>
               <li><a class="white-text" href="https://tgportfolio.herokuapp.com/">Tammer Galal</a></li>
             </ul>
           </div>
@@ -60,9 +60,9 @@
       </div>
 
       {{#if isAuthenticated}}
-      <div class="teal" style="position:fixed;right:0px; bottom:0px"> <i class="material-icons">recent_actors</i>{{ user.username }}</div>
+      <div class="idBox" style="position:fixed;right:0px; bottom:0px"> <i class="material-icons">recent_actors</i>{{ user.username }}</div>
       {{else}}
-      <div class="teal" style="position:fixed;right:0px; bottom:0px"> <i class= "material-icons">recent_actors</i>Please Log In</div>
+      <div class="idBox" style="position:fixed;right:0px; bottom:0px"> <i class= "material-icons">recent_actors</i>Please Log In</div>
       {{/if}}
       <div class="footer-copyright">
         <div class="container">

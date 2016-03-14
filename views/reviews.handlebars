@@ -1,10 +1,21 @@
 <div class="message container center red">
   {{ msg }}
 </div>
+<div class="section no-pad-bot" id="reviews-banner">
+  <div class="listTrans">
+    <div class="container">
+      <br><br>
+      <h1 class="header center white-text">Your Reviews</h1>
+      <div class="row center">
+        <h5 class="header col s12 light white-text">Edit or Delete Your Reviews</h5>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="col s12 m4">
   <!-- <h5>{{results.dataValues.username}}'s Reviews:</h5> -->
   <div class="row">
-    {{#each results}}
+
       {{#each reviews}}
         <div class="col s12 m4 offset-m1">
           <div class="card-panel white-text">
@@ -42,11 +53,11 @@
           </div>
         </div>
       {{/each}}
-    {{/each}}
+
   </div>
     <script type="text/javascript" src="https://api.filepicker.io/v2/filepicker.js"></script>
 
-  <h5 class="center teal container">Add your favorite food pictures here.</h5>
+  <h5 class="center warnings container">Add your favorite food pictures here.</h5>
  <br>
     <div class="center container ">
     {{!--  <input type="filepicker" id="mySelect" data-fp-apikey="AbwDZpo3gTOyH18Lb4FHFz" data-fp-mimetypes="image/*" data-fp-services="WEBCAM, CONVERT, COMPUTER, FACEBOOK, INSTAGRAM, GMAIL" conversions="crop, rotate, filter" data-fp-container="modal" onchange="createImage(event.fpfile.url)"> --}}

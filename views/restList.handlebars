@@ -1,13 +1,10 @@
-<!-- Test to see if I can get an integer id -->
-<!-- <div class="teal" style="position:fixed;left:0px; top:100px">  <i class="material-icons">recent_actors</i>{{ user.thisId }}, {{ user.username }}
-</div> -->
 <div class="section no-pad-bot" id="listing-banner">
   <div class="listTrans">
     <div class="container">
       <br><br>
-      <h1 class="header center orange-text">Restaurant Listings</h1>
+      <h1 class="header center white-text">Restaurant Listings</h1>
       <div class="row center">
-        <h5 class="header col s12 light white-text">Here are some different restaurants around campus</h5>
+        <h5 class="header col s12 light white-text">Student suggested restaurants</h5>
       </div>
     </div>
   </div>
@@ -29,7 +26,7 @@
             {{/each}}
           </select>
           <label>What Are You In The Mood For?</label>
-          <button type="submit" class="waves-effect waves-light btn-large">Search</button>
+          <button type="submit" class="waves-effect waves-light pull-right btn-large">Search</button>
         </div>
       </div>
       <div>
@@ -79,7 +76,7 @@
               <label for="review">Review</label>
             </div>
           </div>
-          <button class="btn waves-effect waves-light col s3" type="submit" name="action">Submit<i class="material-icons right">send</i>
+          <button class="btn waves-effect waves-light pull-right" type="submit" name="action">Submit<i class="material-icons right">send</i>
           </button>
         </form>
         {{else}}
