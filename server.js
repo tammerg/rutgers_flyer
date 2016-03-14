@@ -330,27 +330,27 @@ app.get('/restinfo', function(req, res){
 });
 
 app.get('/userRevs', function(req, res){
-  User.findOne({
-        where: {
-            username:req.user.username,
-        },
-    include: [{
-      model: Review
-    }]
-  }).then(function(results){
-    // console.log(results.dataValues);
-    // console.log(results.dataValues.reviews);
-    // console.log(results.dataValues.reviews[0].dataValues);
-    // console.log(results.dataValues.reviews[0].dataValues.review);
-    res.render("reviews", {
-      user:req.user,
-      isAuthenticated: req.isAuthenticated(),
-      results:results
+  var where = {};
+  if(req.user) {
+    console.log(req.user);
+    where = {
+      where: {
+        userId: req.user.thisId
+      }
+    }
+    console.log("Where is", where);
+    Review.findAll(where).then(function(reviews) {
+      console.log(reviews);
+      res.render('reviews', {
+        msg: req.query.msg,
+        user: req.user,
+        isAuthenticated: req.isAuthenticated(),
+        reviews: reviews //left side = handlebars right side = data variable
+      });
     });
-  }).catch(function(err) {
-    console.log(err);
-    res.render("restList", {msg: err.errors[0].message});
-  });
+  } else {
+    res.redirect("/");
+  }
 });
 
 
