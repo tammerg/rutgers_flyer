@@ -26,7 +26,7 @@
       <p>{{description}}</p>
     </div>
       {{#each reviews}}
-        <div class="col s6 m4">
+        <div class="col s12 m4">
           <div class="card-panel white-text">
             <h5>{{revTitle}}</h5>
             <p>Dined on {{dineDate}}</p>
@@ -91,11 +91,11 @@
     <div class="row">
       <form method="POST" action="/addRes" class="col s12">
         <div class="row">
-          <div class="input-field col s6">
+          <div class="input-field col s12 col m6">
             <i class="material-icons prefix">business</i> <input class="validate" id="restName" name="restName" type="text"> <label for="restName">Restaurant Name</label>
           </div>
           <!-- Make this a predetermined dropdown -->
-          <div class="input-field col s6">
+          <div class="input-field col s12 col m6">
             <input class="validate" id="cuisine" name="cuisine" type="text"> <label for="cuisine">Type of Food</label>
           </div>
         </div>
